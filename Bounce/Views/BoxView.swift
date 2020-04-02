@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol SpawnNewBoxDelegate: class {
+     func spawnNewBox(_ sender: BoxView)
+}
+
 class BoxView : UIView
 {
     var colourIndex = 0
@@ -18,6 +22,8 @@ class BoxView : UIView
     var xVelocity : CGFloat = 5.0
     var yVelocity : CGFloat = 5.0
     var bounces = 5
+    weak var spawnDelegate: SpawnNewBoxDelegate?
+    var gameBounds = CGRect()
     
     override init(frame: CGRect) {
         super.init(frame : frame)
@@ -45,8 +51,23 @@ class BoxView : UIView
         super.updateConstraints()
     }
     
-    override func draw(_ rect: CGRect) {
+    func update()
+    {
+        addVelocity()
         
+        if (x > gameBounds.maxX || x < gameBounds.minX)
+        {
+            spawnDelegate?.spawnNewBox(self)
+            xVelocity *= -1
+            animate()
+        }
+        if (y > gameBounds.maxY || y < gameBounds.minY)
+        {
+            spawnDelegate?.spawnNewBox(self)
+            yVelocity *= -1
+            animate()
+            
+        }
     }
     
     func addVelocity()
@@ -61,14 +82,19 @@ class BoxView : UIView
     func animate()
     {
         
-        if (bounces == 0)
-        {
-            DispatchQueue.main.async() {
-                       self.removeFromSuperview()
-                   }
-            
-            return
-        }
+        //todo:
+        //would like to handle this here but for some reason
+        //remove from supervioew here leaves the box on the edge as a red box
+        //        if (bounces == 0)
+        //        {
+        //            DispatchQueue.main.async() {
+        //                       self.removeFromSuperview()
+        //                   }
+        //
+        //            self.setNeedsDisplay()
+        //
+        //            return
+        //        }
         
         UIView.animate(withDuration: 0.5,
                     delay: 0.0,
