@@ -61,7 +61,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     {
         //just hardcodng a location for now but will actually spawn at a random
         //location in bounds where it can fit at any rotation
-        var gate = LightningView(frame: CGRect(x: 15,y: 200,width: 360,height: 70))
+        var gate = LightningView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
         
         gates.append(gate)
         self.view.addSubview(gate)

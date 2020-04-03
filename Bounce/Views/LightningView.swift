@@ -18,7 +18,7 @@ class LightningView : UIView
     var start = CGPoint()
     var end = CGPoint()
     var paths = [Path]()
-    var lines = 10
+    var lines = 6
     var halfFrameHeight : CGFloat = 0.0
 
     override init(frame: CGRect) {
@@ -42,13 +42,15 @@ class LightningView : UIView
         _ = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) { _ in
             self.animate()
         }
+        
+        self.rotate()
     }
     
     func addLine()
     {
         var points : [CGPoint] = [CGPoint]()
         
-        let displaceStart = CGPoint(x: start.x, y: start.y + CGFloat.random(in: -5...5))
+        let displaceStart = CGPoint(x: start.x, y: start.y + CGFloat.random(in: -3...3))
         let displaceEnd = CGPoint(x: end.x, y: end.y + CGFloat.random(in: -5...5))
         
         points.append(displaceStart)
@@ -118,11 +120,37 @@ class LightningView : UIView
     func animate()
     {
         
+        
+        
+        
         //need to use CAShapeLayer CABasicAnimation and clippin paths/masks
         //to able to animate the colour of an individual line
         paths.removeFirst()
         addLine()
         self.setNeedsDisplay()
+    }
+}
+
+extension UIView {
+    private static let rotationAnimationKey = "rotationanimationKey"
+
+    func rotate(duration: Double = 1) {
+        if layer.animation(forKey: UIView.rotationAnimationKey) == nil {
+            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+
+            rotationAnimation.fromValue = 0.0
+            rotationAnimation.toValue = Float.pi * 2.0
+            rotationAnimation.duration = duration
+            rotationAnimation.repeatCount = Float.infinity
+
+            layer.add(rotationAnimation, forKey: UIView.rotationAnimationKey)
+        }
+    }
+
+    func stopRotating() {
+        if layer.animation(forKey: UIView.rotationAnimationKey) != nil {
+            layer.removeAnimation(forKey: UIView.rotationAnimationKey)
+        }
     }
 }
 
