@@ -16,6 +16,25 @@ class GateView : UIView
 
     override init(frame: CGRect) {
         super.init(frame : frame)
+    
+        //can do this with an imageview or something to make it nicer i guess
+        //just doing it easy way for now
+        let leftBox : CGRect = CGRect(x: 0.0,y: frame.height/2 - 4,width: 8,height: 8)
+        let leftBoxView = UIView(frame: leftBox)
+        leftBoxView.backgroundColor = UIColor.blue
+        
+        
+        let rightBox : CGRect = CGRect(x: frame.width - 8,y: frame.height/2 - 4,width: 8,height: 8)
+        let rightBoxView = UIView(frame: rightBox)
+        rightBoxView.backgroundColor = UIColor.blue
+        
+        addSubview(leftBoxView)
+        addSubview(rightBoxView)
+        
+        let lightningFrame : CGRect = CGRect(x: 8.0,y: 0.0,width: frame.width - 8,height: frame.height)
+        addSubview(LightningView(frame: lightningFrame))
+        
+        self.rotate(duration: 4)
     }
     
     required init?(coder: NSCoder) {
@@ -32,22 +51,34 @@ class GateView : UIView
     
     func animate()
     {
-        UIView.animate(withDuration: 0.5,
-                    delay: 0.0,
-                    usingSpringWithDamping: 0.3,
-                    initialSpringVelocity: 3,
-                    options: UIView.AnimationOptions.curveEaseInOut,
-                    animations: ({
-                        self.transform = CGAffineTransform(scaleX : 1.4, y: 1.4)
-                }), completion: { _ in
-                    UIView.animate(withDuration: 0.5,
-                                   animations: ({self.transform = .identity}),
-                                   completion: nil)
-                })
         
     }
     
     
 }
+
+extension UIView {
+    private static let rotationAnimationKey = "rotationanimationKey"
+
+    func rotate(duration: Double = 1) {
+        if layer.animation(forKey: UIView.rotationAnimationKey) == nil {
+            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+
+            rotationAnimation.fromValue = 0.0
+            rotationAnimation.toValue = Float.pi * 2.0
+            rotationAnimation.duration = duration
+            rotationAnimation.repeatCount = Float.infinity
+
+            layer.add(rotationAnimation, forKey: UIView.rotationAnimationKey)
+        }
+    }
+
+    func stopRotating() {
+        if layer.animation(forKey: UIView.rotationAnimationKey) != nil {
+            layer.removeAnimation(forKey: UIView.rotationAnimationKey)
+        }
+    }
+}
+
 
 

@@ -20,7 +20,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     
     //should actually be GateView which will contain other animated components
     //but just using this as a test at the moment
-    var gates = [LightningView]()
+    var gates = [GateView]()
 
 
     override func viewDidLoad() {
@@ -61,7 +61,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     {
         //just hardcodng a location for now but will actually spawn at a random
         //location in bounds where it can fit at any rotation
-        var gate = LightningView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
+        var gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
+            //LightningView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
         
         gates.append(gate)
         self.view.addSubview(gate)
