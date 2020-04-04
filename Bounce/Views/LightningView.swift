@@ -117,10 +117,6 @@ class LightningView : UIView
     
     func animate()
     {
-        
-        
-        
-        
         //need to use CAShapeLayer CABasicAnimation and clippin paths/masks
         //to able to animate the colour of an individual line
         paths.removeFirst()
