@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, SpawnNewBoxDelegate {
+class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     var logoView = BoxView(frame: CGRect.zero)
     var bounds = CGRect()
@@ -17,13 +17,14 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     var boxHeight : CGFloat = 16.0
     
     var boxes = [BoxView]()
-    
-    //should actually be GateView which will contain other animated components
-    //but just using this as a test at the moment
     var gates = [GateView]()
+    var mines = [MineView]()
     
     var controlArea = ControlAreaView()
     var scoreboard = ScoreboardView()
+    
+    var timer = Timer()
+    var mineSpawnTimer = Timer()
 
 
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
                                  height: self.view.frame.height/8)
         
         controlArea = ControlAreaView(frame: controlAreaRect)
-        self.view.addSubview(controlArea)
+        
         
         //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
         let scoreboardRect = CGRect(x: 0,
@@ -46,9 +47,20 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
         height: self.view.frame.height/12)
         
         scoreboard = ScoreboardView(frame: scoreboardRect)
+        
+        
+        initialiseGame()
+    }
+    
+    func initialiseGame()
+    {
+        boxes.removeAll()
+        gates.removeAll()
+        mines.removeAll()
+        
+        self.view.addSubview(controlArea)
         self.view.addSubview(scoreboard)
         
-    
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
@@ -56,11 +68,36 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
         
         addBox(x: self.view.frame.width / 2.0, y: self.view.frame.height / 2.0, xvel: 1.5,yvel: 1.5)
         addGate()
-    
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
             self.viewAnimation()
         }
+        
+        mineSpawnTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            self.spawnMine()
+        }
+    }
+    
+    
+    func gameOver()
+    {
+        
+        //just remove everything
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        
+        //stop timers
+        timer.invalidate()
+        timer = Timer()
+        
+        mineSpawnTimer.invalidate()
+        mineSpawnTimer = Timer()
+        
+        //pop up an alert
+        let alert = UIAlertController(title: "Game Over!", message: "Tap to restart the game", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "????"), style: .default, handler: { _ in
+            self.initialiseGame()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func spawnNewBox(_ sender: BoxView) {
@@ -69,15 +106,28 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     
     func generateBounds()
     {
-        bounds = CGRect(x: 0,y: scoreboard.frame.height, width: self.view.frame.width - boxWidth, height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height - boxHeight))
+        bounds = CGRect(x: 0,
+                        y: scoreboard.frame.height,
+                        width: self.view.frame.width,
+                        height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height))
     }
     
-    func generateFrame(x: CGFloat, y: CGFloat) -> CGRect
+    func spawnMine()
     {
-        return CGRect.init(x: x,
-                           y: y,
-                           width: boxWidth,
-                           height: boxHeight)
+        //change collision to bounds intersection
+        
+        if (mines.count < 4)
+        {
+            let newMine = MineView(frame: CGRect(
+                    x: CGFloat.random(in: 0...bounds.maxX - boxWidth),
+                    y: CGFloat.random(in: 0...bounds.maxY - boxHeight),
+                    width: boxWidth,
+                    height: boxHeight))
+            
+            newMine.gameBounds = bounds
+            mines.append(newMine)
+            self.view.addSubview(newMine)
+        }
     }
     
     func addGate()
@@ -94,11 +144,16 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     {
         if (boxes.count < 4)
         {
-            let newBox = BoxView(frame: generateFrame(x: x,y: y))
+            let newBox = BoxView(frame: CGRect(
+                        x: x,
+                        y: y,
+                        width: boxWidth,
+                        height: boxHeight))
             newBox.xVelocity = xvel
             newBox.yVelocity = yvel
             newBox.gameBounds = bounds
             newBox.spawnDelegate = self
+            newBox.gameOverDelegate = self
             boxes.append(newBox)
             self.view.addSubview(newBox)
         }
@@ -111,12 +166,19 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
             gates.forEach {gate in
                 if (box.frame.intersects(gate.frame))
                 {
-                    //speed box up
+                    //speed box up temporarily
                     
                     //despawn gate
                     
                     //add some score
                     scoreboard.addScore(value: 100)
+                }
+            }
+            
+            mines.forEach {mine in
+                if (box.frame.intersects(mine.frame))
+                {
+                    box.damage()
                 }
             }
             

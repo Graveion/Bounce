@@ -21,6 +21,7 @@
 		5BD02849243215C8002F5B36 /* GateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02846243215C8002F5B36 /* GateView.swift */; };
 		5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */; };
 		5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */; };
+		5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284E24390DFB002F5B36 /* MineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		5BD02846243215C8002F5B36 /* GateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateView.swift; sourceTree = "<group>"; };
 		5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAreaView.swift; sourceTree = "<group>"; };
+		5BD0284E24390DFB002F5B36 /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				5BD02845243215C8002F5B36 /* LightningView.swift */,
 				5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */,
 				5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */,
+				5BD0284E24390DFB002F5B36 /* MineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				5BD02847243215C8002F5B36 /* BoxView.swift in Sources */,
 				5BD02813243214F4002F5B36 /* SceneDelegate.swift in Sources */,
 				5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */,
+				5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */,
 				5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */,
 				5BD0281B243214F4002F5B36 /* Bounce.xcdatamodeld in Sources */,
 			);
