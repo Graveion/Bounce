@@ -57,13 +57,13 @@ class BoxView : UIView
         
         if (x > gameBounds.maxX || x < gameBounds.minX)
         {
-            spawnDelegate?.spawnNewBox(self)
+            //spawnDelegate?.spawnNewBox(self)
             xVelocity *= -1
             animate()
         }
         if (y > gameBounds.maxY || y < gameBounds.minY)
         {
-            spawnDelegate?.spawnNewBox(self)
+            //spawnDelegate?.spawnNewBox(self)
             yVelocity *= -1
             animate()
             
@@ -118,7 +118,6 @@ class BoxView : UIView
                    
         self.layer.add(colourAnim, forKey: "backgroundColor")
         self.layer.backgroundColor = newColour
-        bounces -= 1
     }
     
     func nextColour() -> UIColor

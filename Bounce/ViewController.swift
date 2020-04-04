@@ -13,8 +13,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     var logoView = BoxView(frame: CGRect.zero)
     var bounds = CGRect()
     
-    var boxWidth : CGFloat = 25.0
-    var boxHeight : CGFloat = 25.0
+    var boxWidth : CGFloat = 16.0
+    var boxHeight : CGFloat = 16.0
     
     var boxes = [BoxView]()
     
@@ -111,7 +111,11 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
             gates.forEach {gate in
                 if (box.frame.intersects(gate.frame))
                 {
-                    //speed box up, despawn gate and add some score
+                    //speed box up
+                    
+                    //despawn gate
+                    
+                    //add some score
                     scoreboard.addScore(value: 100)
                 }
             }
