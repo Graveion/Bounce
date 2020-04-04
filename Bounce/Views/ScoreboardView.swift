@@ -11,6 +11,8 @@ import UIKit
 
 class ScoreboardView : UIView
 {
+    var score = 0
+    
     override init(frame: CGRect) {
     super.init(frame : frame)
         self.backgroundColor = UIColor.black
@@ -19,5 +21,10 @@ class ScoreboardView : UIView
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func addScore(value: Int)
+    {
+        score += value
     }
 }

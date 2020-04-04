@@ -107,6 +107,15 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     func viewAnimation()
     {
         boxes.forEach{ box in
+            
+            gates.forEach {gate in
+                if (box.frame.intersects(gate.frame))
+                {
+                    //speed box up, despawn gate and add some score
+                    scoreboard.addScore(value: 100)
+                }
+            }
+            
             box.update()
         }
         
