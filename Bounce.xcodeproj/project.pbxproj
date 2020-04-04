@@ -21,6 +21,7 @@
 		5BD02849243215C8002F5B36 /* GateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02846243215C8002F5B36 /* GateView.swift */; };
 		5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */; };
 		5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */; };
+		81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CB7B842438E38700154CC6 /* ScoreCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		5BD02846243215C8002F5B36 /* GateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateView.swift; sourceTree = "<group>"; };
 		5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAreaView.swift; sourceTree = "<group>"; };
+		81CB7B842438E38700154CC6 /* ScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				5BD02844243215C8002F5B36 /* BoxView.swift */,
 				5BD02846243215C8002F5B36 /* GateView.swift */,
 				5BD02845243215C8002F5B36 /* LightningView.swift */,
+				81CB7B842438E38700154CC6 /* ScoreCell.xib */,
 				5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */,
 				5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */,
 			);
@@ -260,6 +263,7 @@
 			files = (
 				5BD02820243214F6002F5B36 /* LaunchScreen.storyboard in Resources */,
 				5BD0281D243214F6002F5B36 /* Assets.xcassets in Resources */,
+				81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */,
 				5BD02818243214F4002F5B36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

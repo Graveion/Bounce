@@ -25,7 +25,6 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     var controlArea = ControlAreaView()
     var scoreboard = ScoreboardView()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -38,17 +37,20 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
         
         controlArea = ControlAreaView(frame: controlAreaRect)
         self.view.addSubview(controlArea)
-        
-        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
+
         let scoreboardRect = CGRect(x: 0,
-        y: 0,
-        width: self.view.frame.width,
-        height: self.view.frame.height/12)
-        
+              y: 0,
+              width: 426,
+              height: 129)
+
         scoreboard = ScoreboardView(frame: scoreboardRect)
         self.view.addSubview(scoreboard)
+
         
-    
+        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
+
+
+
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
@@ -79,12 +81,18 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
                            width: boxWidth,
                            height: boxHeight)
     }
+//
+//    func createScoreboardView() -> UIView {
+//        let scoreboardView = ScoreboardView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/12))
+//              self.view.addSubview(scoreboardView)
+//              return scoreboardView
+//    }
     
     func addGate()
     {
         //just hardcodng a location for now but will actually spawn at a random
         //location in bounds where it can fit at any rotation - See Gates
-        var gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
+        let gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
         
         gates.append(gate)
         self.view.addSubview(gate)
@@ -116,7 +124,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
                     //despawn gate
                     
                     //add some score
-                    scoreboard.addScore(value: 100)
+//                    scoreboard.addScore(value: 100)
                 }
             }
             
