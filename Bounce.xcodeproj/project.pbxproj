@@ -19,6 +19,8 @@
 		5BD02847243215C8002F5B36 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02844243215C8002F5B36 /* BoxView.swift */; };
 		5BD02848243215C8002F5B36 /* LightningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02845243215C8002F5B36 /* LightningView.swift */; };
 		5BD02849243215C8002F5B36 /* GateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02846243215C8002F5B36 /* GateView.swift */; };
+		5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */; };
+		5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		5BD02844243215C8002F5B36 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		5BD02845243215C8002F5B36 /* LightningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningView.swift; sourceTree = "<group>"; };
 		5BD02846243215C8002F5B36 /* GateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateView.swift; sourceTree = "<group>"; };
+		5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
+		5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAreaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				5BD02844243215C8002F5B36 /* BoxView.swift */,
 				5BD02846243215C8002F5B36 /* GateView.swift */,
 				5BD02845243215C8002F5B36 /* LightningView.swift */,
+				5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */,
+				5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +291,8 @@
 				5BD02811243214F4002F5B36 /* AppDelegate.swift in Sources */,
 				5BD02847243215C8002F5B36 /* BoxView.swift in Sources */,
 				5BD02813243214F4002F5B36 /* SceneDelegate.swift in Sources */,
+				5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */,
+				5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */,
 				5BD0281B243214F4002F5B36 /* Bounce.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

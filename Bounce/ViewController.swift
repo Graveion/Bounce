@@ -13,8 +13,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     var logoView = BoxView(frame: CGRect.zero)
     var bounds = CGRect()
     
-    var logoWidth : CGFloat = 25.0
-    var logoHeight : CGFloat = 25.0
+    var boxWidth : CGFloat = 25.0
+    var boxHeight : CGFloat = 25.0
     
     var boxes = [BoxView]()
     
@@ -22,7 +22,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     //but just using this as a test at the moment
     var gates = [GateView]()
     
-    var controlArea = UIView()
+    var controlArea = ControlAreaView()
+    var scoreboard = ScoreboardView()
 
 
     override func viewDidLoad() {
@@ -35,10 +36,18 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
                                  width: self.view.frame.width,
                                  height: self.view.frame.height/8)
         
-        controlArea = UIView(frame: controlAreaRect)
-        controlArea.backgroundColor = UIColor.black
-        
+        controlArea = ControlAreaView(frame: controlAreaRect)
         self.view.addSubview(controlArea)
+        
+        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
+        let scoreboardRect = CGRect(x: 0,
+        y: 0,
+        width: self.view.frame.width,
+        height: self.view.frame.height/12)
+        
+        scoreboard = ScoreboardView(frame: scoreboardRect)
+        self.view.addSubview(scoreboard)
+        
     
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
@@ -60,15 +69,15 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     
     func generateBounds()
     {
-        bounds = CGRect(x: 0,y: 0, width: self.view.frame.width - logoWidth, height: (self.view.frame.height - controlArea.frame.height) - logoHeight)
+        bounds = CGRect(x: 0,y: scoreboard.frame.height, width: self.view.frame.width - boxWidth, height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height - boxHeight))
     }
     
     func generateFrame(x: CGFloat, y: CGFloat) -> CGRect
     {
         return CGRect.init(x: x,
                            y: y,
-                           width: logoWidth,
-                           height: logoHeight)
+                           width: boxWidth,
+                           height: boxHeight)
     }
     
     func addGate()
