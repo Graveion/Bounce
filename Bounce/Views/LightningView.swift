@@ -49,7 +49,7 @@ class LightningView : UIView
         var points : [CGPoint] = [CGPoint]()
         
         let displaceStart = CGPoint(x: start.x, y: start.y + CGFloat.random(in: -3...3))
-        let displaceEnd = CGPoint(x: end.x, y: end.y + CGFloat.random(in: -5...5))
+        let displaceEnd = CGPoint(x: end.x, y: end.y + CGFloat.random(in: -3...3))
         
         points.append(displaceStart)
         points.append(displaceEnd)

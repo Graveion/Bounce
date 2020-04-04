@@ -102,7 +102,7 @@ class BoxView : UIView
                     initialSpringVelocity: 3,
                     options: UIView.AnimationOptions.curveEaseInOut,
                     animations: ({
-                        self.transform = CGAffineTransform(scaleX : 1.4, y: 1.4)
+                        self.transform = CGAffineTransform(scaleX : 1.1, y: 1.1)
                 }), completion: { _ in
                     UIView.animate(withDuration: 0.5,
                                    animations: ({self.transform = .identity}),

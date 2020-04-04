@@ -21,12 +21,25 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     //should actually be GateView which will contain other animated components
     //but just using this as a test at the moment
     var gates = [GateView]()
+    
+    var controlArea = UIView()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        //calculate size of control area and use it to cut down the game bounds (currently set to 1/8 screen height)
+        let controlAreaRect = CGRect(x: 0,
+                                 y: (self.view.frame.height - self.view.frame.height/8),
+                                 width: self.view.frame.width,
+                                 height: self.view.frame.height/8)
+        
+        controlArea = UIView(frame: controlAreaRect)
+        controlArea.backgroundColor = UIColor.black
+        
+        self.view.addSubview(controlArea)
+    
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
@@ -34,6 +47,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
         
         addBox(x: self.view.frame.width / 2.0, y: self.view.frame.height / 2.0, xvel: 1.5,yvel: 1.5)
         addGate()
+    
         
         let timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
             self.viewAnimation()
@@ -46,7 +60,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     
     func generateBounds()
     {
-        bounds = CGRect(x: 0,y: 0, width: self.view.frame.width - logoWidth, height: self.view.frame.height - logoHeight)
+        bounds = CGRect(x: 0,y: 0, width: self.view.frame.width - logoWidth, height: (self.view.frame.height - controlArea.frame.height) - logoHeight)
     }
     
     func generateFrame(x: CGFloat, y: CGFloat) -> CGRect
@@ -60,9 +74,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     func addGate()
     {
         //just hardcodng a location for now but will actually spawn at a random
-        //location in bounds where it can fit at any rotation
+        //location in bounds where it can fit at any rotation - See Gates
         var gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
-            //LightningView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
         
         gates.append(gate)
         self.view.addSubview(gate)
@@ -84,16 +97,14 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
     
     func viewAnimation()
     {
-        //this can all be moved and each box handle animation individually
-        //as long as they have access to the bounds
-        //will also need a delegate to send back to ask for a new box
-        
         boxes.forEach{ box in
             box.update()
         }
         
-        
+        //dont like removing boxes here but for some reason it doesn't work calling self.remove in the box?
         boxes.filter({ $0.bounces == 0 }).forEach{box in box.removeFromSuperview()}
+        
+        //remove from array
         boxes.removeAll(where: { $0.bounces == 0 })
     }
 }
