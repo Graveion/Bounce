@@ -10,8 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
-    var logoView = BoxView(frame: CGRect.zero)
-    var bounds = CGRect()
+    var gameBounds = CGRect()
     
     var boxWidth : CGFloat = 16.0
     var boxHeight : CGFloat = 16.0
@@ -25,7 +24,8 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     var timer = Timer()
     var mineSpawnTimer = Timer()
-
+    
+    var viewFactory = ViewFactory(screenWidth: 0,screenHeight: 0, gameBounds: CGRect.zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,13 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         
         scoreboard = ScoreboardView(frame: scoreboardRect)
         
+        //calculate currents bounds we want to limit the boxes to
+        //later when we add some more ui elements we limit the bounds
+        //the the "playing area"
+        generateBounds()
         
+        viewFactory = ViewFactory(screenWidth: self.view.frame.width, screenHeight: self.view.frame.height, gameBounds: gameBounds)
+    
         initialiseGame()
     }
     
@@ -61,16 +67,11 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         self.view.addSubview(controlArea)
         self.view.addSubview(scoreboard)
         
-        //calculate currents bounds we want to limit the boxes to
-        //later when we add some more ui elements we limit the bounds
-        //the the "playing area"
-        generateBounds()
-        
-        addBox(x: self.view.frame.width / 2.0, y: self.view.frame.height / 2.0, xvel: 1.5,yvel: 1.5)
-        addGate()
+        spawnBox()
+        spawnGate()
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
-            self.viewAnimation()
+            self.gameLoop()
         }
         
         mineSpawnTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
@@ -101,12 +102,12 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     }
     
     func spawnNewBox(_ sender: BoxView) {
-        addBox(x: sender.x, y: sender.y, xvel:  sender.xVelocity * -1, yvel: sender.yVelocity * -1)
+        spawnBox()
     }
     
     func generateBounds()
     {
-        bounds = CGRect(x: 0,
+        gameBounds = CGRect(x: 0,
                         y: scoreboard.frame.height,
                         width: self.view.frame.width,
                         height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height))
@@ -114,59 +115,58 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     func spawnMine()
     {
-        //change collision to bounds intersection
-        
         if (mines.count < 4)
         {
-            let newMine = MineView(frame: CGRect(
-                    x: CGFloat.random(in: 0...bounds.maxX - boxWidth),
-                    y: CGFloat.random(in: 0...bounds.maxY - boxHeight),
-                    width: boxWidth,
-                    height: boxHeight))
             
-            newMine.gameBounds = bounds
-            mines.append(newMine)
-            self.view.addSubview(newMine)
+            var mine : MineView
+            
+            let selector = Int.random(in: 0...3)
+            
+            switch selector {
+            case 0:
+                 mine = viewFactory.spawnObject(type: GameObject.mine) as! MineView
+            case 1:
+                 mine = viewFactory.spawnObject(type: GameObject.mobileMine) as! MineView
+            case 2:
+                 mine = viewFactory.spawnObject(type: GameObject.verticalMine) as! MineView
+            case 3:
+                 mine = viewFactory.spawnObject(type: GameObject.horizontalMine) as! MineView
+            default:
+                 mine = viewFactory.spawnObject(type: GameObject.mine) as! MineView
+            }
+            
+            mines.append(mine)
+            self.view.addSubview(mine)
         }
     }
     
-    func addGate()
+    func spawnGate()
     {
-        //just hardcodng a location for now but will actually spawn at a random
-        //location in bounds where it can fit at any rotation - See Gates
-        var gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
-        
+        let gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
         gates.append(gate)
         self.view.addSubview(gate)
     }
     
-    func addBox(x: CGFloat, y: CGFloat, xvel : CGFloat, yvel : CGFloat)
+    func spawnBox()
     {
         if (boxes.count < 4)
         {
-            let newBox = BoxView(frame: CGRect(
-                        x: x,
-                        y: y,
-                        width: boxWidth,
-                        height: boxHeight))
-            newBox.xVelocity = xvel
-            newBox.yVelocity = yvel
-            newBox.gameBounds = bounds
-            newBox.spawnDelegate = self
-            newBox.gameOverDelegate = self
-            boxes.append(newBox)
-            self.view.addSubview(newBox)
+            let box = viewFactory.spawnObject(type: GameObject.box) as! BoxView
+            box.spawnDelegate = self
+            box.gameOverDelegate = self
+            boxes.append(box)
+            self.view.addSubview(box)
         }
     }
     
-    func viewAnimation()
+    func gameLoop()
     {
         boxes.forEach{ box in
             
             gates.forEach {gate in
                 if (box.frame.intersects(gate.frame))
                 {
-                    //speed box up temporarily
+                    //speed box up temporarily?
                     
                     //despawn gate
                     
@@ -183,6 +183,10 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
             }
             
             box.update()
+        }
+        
+        mines.forEach {mine in
+            mine.update()
         }
         
         //dont like removing boxes here but for some reason it doesn't work calling self.remove in the box?

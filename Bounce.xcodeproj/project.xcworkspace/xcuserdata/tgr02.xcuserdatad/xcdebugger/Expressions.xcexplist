@@ -16,5 +16,32 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "SpawnManager.init(gameBounds:):SpawnManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "params.forType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MovingObjectParams.init(from:):MovingObjectParams.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "var test : Double = try values.decode(Double.self, forKey: .xVelocity)">
+            </PersistentString>
+            <PersistentString
+               value = "xVelocity = try values.decode(CGFloat.self, forKey: .xVelocity)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ParameterData.init(from:):ParameterData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "forType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
