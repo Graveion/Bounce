@@ -9,15 +9,12 @@
 import Foundation
 import UIKit
 
-class GateView : UIView
+class GateView : GameObjectView
 {
-    var x : CGFloat = 0.0
-    var y : CGFloat = 0.0
-    
     var collision = CGRect()
 
-    override init(frame: CGRect) {
-        super.init(frame : frame)
+    override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
+        super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
     
         //can do this with an imageview or something to make it nicer i guess
         //just doing it easy way for now
@@ -53,8 +50,6 @@ class GateView : UIView
     {
         
     }
-    
-    
 }
 
 extension UIView {
