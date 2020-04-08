@@ -8,36 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController, SpawnNewBoxDelegate {
+class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
-    var logoView = BoxView(frame: CGRect.zero)
-    var bounds = CGRect()
-    
-    var boxWidth : CGFloat = 16.0
-    var boxHeight : CGFloat = 16.0
+    var gameBounds = CGRect()
     
     var boxes = [BoxView]()
-    
-    //should actually be GateView which will contain other animated components
-    //but just using this as a test at the moment
     var gates = [GateView]()
+    var mines = [MineView]()
     
     var controlArea = ControlAreaView()
     var scoreboard = ScoreboardView()
-
-    override func viewDidLoad() {
+    var timer = Timer()
+    var mineSpawnTimer = Timer()   
+    var viewFactory = ViewFactory(screenWidth: 0,screenHeight: 0, gameBounds: CGRect.zero)
+    
+  override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         //calculate size of control area and use it to cut down the game bounds (currently set to 1/8 screen height)
         let controlAreaRect = CGRect(x: 0,
-                                 y: (self.view.frame.height - self.view.frame.height/8),
+                                 y: (self.view.frame.height - self.view.frame.height/12),
                                  width: self.view.frame.width,
-                                 height: self.view.frame.height/8)
+                                 height: self.view.frame.height/12)
         
         controlArea = ControlAreaView(frame: controlAreaRect)
         self.view.addSubview(controlArea)
-
+        
+        
+        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
         let scoreboardRect = CGRect(x: 0,
               y: 0,
               width: 426,
@@ -48,38 +47,118 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
 
         
         //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
-
-
-
+ 
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
         generateBounds()
         
-        addBox(x: self.view.frame.width / 2.0, y: self.view.frame.height / 2.0, xvel: 1.5,yvel: 1.5)
-        addGate()
-    
+        viewFactory = ViewFactory(screenWidth: self.view.frame.width, screenHeight: self.view.frame.height, gameBounds: gameBounds)
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
-            self.viewAnimation()
+        //just testing
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+    
+        initialiseGame()
+    }
+    
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
+
+        let point = sender.location(in: self.view)
+
+        //check location half
+        if (point.x < self.view.frame.maxX / 2)
+        {
+            //flip y
+            boxes.forEach{ box in box.xVelocity *= -1 }
+        }
+        else
+        {
+            boxes.forEach{ box in box.yVelocity *= -1 }
         }
     }
     
+    func initialiseGame()
+    {
+        boxes.removeAll()
+        gates.removeAll()
+        mines.removeAll()
+        
+        self.view.addSubview(controlArea)
+        self.view.addSubview(scoreboard)
+        
+        spawnBox()
+        spawnGate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
+            self.gameLoop()
+        }
+        
+        mineSpawnTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            self.spawnMine()
+        }
+    }
+    
+    
+    func gameOver()
+    {
+        
+        //just remove everything
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        
+        //stop timers
+        timer.invalidate()
+        timer = Timer()
+        
+        mineSpawnTimer.invalidate()
+        mineSpawnTimer = Timer()
+        
+        //pop up an alert
+        let alert = UIAlertController(title: "Game Over!", message: "Tap to restart the game", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "????"), style: .default, handler: { _ in
+            self.initialiseGame()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func spawnNewBox(_ sender: BoxView) {
-        addBox(x: sender.x, y: sender.y, xvel:  sender.xVelocity * -1, yvel: sender.yVelocity * -1)
+        spawnBox()
     }
     
     func generateBounds()
     {
-        bounds = CGRect(x: 0,y: scoreboard.frame.height, width: self.view.frame.width - boxWidth, height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height - boxHeight))
+        gameBounds = CGRect(x: 0,
+                        y: scoreboard.frame.height,
+                        width: self.view.frame.width,
+                        height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height))
     }
     
-    func generateFrame(x: CGFloat, y: CGFloat) -> CGRect
+    
+    //spawn logic to be moved into spawnManager eventually
+    func spawnMine()
     {
-        return CGRect.init(x: x,
-                           y: y,
-                           width: boxWidth,
-                           height: boxHeight)
+        if (mines.count < 4)
+        {
+            var mine : MineView
+            
+            let selector = Int.random(in: 0...3)
+            
+            switch selector {
+            case 0:
+                 mine = viewFactory.spawnObject(type: GameObject.mine) as! MineView
+            case 1:
+                 mine = viewFactory.spawnObject(type: GameObject.mobileMine) as! MineView
+            case 2:
+                 mine = viewFactory.spawnObject(type: GameObject.verticalMine) as! MineView
+            case 3:
+                 mine = viewFactory.spawnObject(type: GameObject.horizontalMine) as! MineView
+            default:
+                 mine = viewFactory.spawnObject(type: GameObject.mine) as! MineView
+            }
+            
+            mines.append(mine)
+            self.view.addSubview(mine)
+        }
     }
 //
 //    func createScoreboardView() -> UIView {
@@ -88,47 +167,74 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
 //              return scoreboardView
 //    }
     
-    func addGate()
+    func spawnGate()
     {
-        //just hardcodng a location for now but will actually spawn at a random
-        //location in bounds where it can fit at any rotation - See Gates
-        let gate = GateView(frame: CGRect(x: 15,y: 200,width: 80,height: 45))
+        var gate : GateView
+        
+        let selector = Int.random(in: 0...1)
+        
+        switch selector {
+        case 0:
+             gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
+        case 1:
+            gate = viewFactory.spawnObject(type: GameObject.rotatingGate) as! GateView
+        default:
+            gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
+        }
         
         gates.append(gate)
         self.view.addSubview(gate)
     }
     
-    func addBox(x: CGFloat, y: CGFloat, xvel : CGFloat, yvel : CGFloat)
+    func spawnBox()
     {
         if (boxes.count < 4)
         {
-            let newBox = BoxView(frame: generateFrame(x: x,y: y))
-            newBox.xVelocity = xvel
-            newBox.yVelocity = yvel
-            newBox.gameBounds = bounds
-            newBox.spawnDelegate = self
-            boxes.append(newBox)
-            self.view.addSubview(newBox)
+            let box = viewFactory.spawnObject(type: GameObject.box) as! BoxView
+            box.spawnDelegate = self
+            box.gameOverDelegate = self
+            boxes.append(box)
+            self.view.addSubview(box)
         }
     }
     
-    func viewAnimation()
+    func gameLoop()
     {
         boxes.forEach{ box in
             
-            gates.forEach {gate in
-                if (box.frame.intersects(gate.frame))
+            gates.reversed().forEach {gate in
+                if (gate.layer.hitTest(box.center) != nil)
                 {
-                    //speed box up
+                    //speed box up temporarily?
+                    //40% inital boost
+                    //scaled down over 3 seconds
+                    box.addBuff(buff: Buff(value: 0.4, duration: .long, type: .speed, owner: box))
                     
                     //despawn gate
+                    gates.remove(at: gates.firstIndex(of: gate)!)
+                    
+                    gate.removeFromSuperview()
                     
                     //add some score
-//                    scoreboard.addScore(value: 100)
+                    scoreboard.addScore(value: 100)
+                    
+                    //spawn a new gate
+                    spawnGate()
+                }
+            }
+            
+            mines.forEach {mine in
+                if (box.frame.intersects(mine.frame))
+                {
+                    box.damage()
                 }
             }
             
             box.update()
+        }
+        
+        mines.forEach {mine in
+            mine.update()
         }
         
         //dont like removing boxes here but for some reason it doesn't work calling self.remove in the box?
@@ -137,5 +243,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate {
         //remove from array
         boxes.removeAll(where: { $0.bounces == 0 })
     }
+    
+    
 }
 

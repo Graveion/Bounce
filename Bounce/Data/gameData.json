@@ -1,0 +1,39 @@
+{
+    "box" : {
+        "width" : 12,
+        "height" : 12,
+        "xVelocity": 1.4,
+        "yVelocity": 1.4
+    },
+    "gate" : {
+        "width" : 80,
+        "height" : 45
+    },
+    "rotatingGate" : {
+        "width" : 80,
+        "height" : 45,
+        "loopDuration" : 10
+    },
+    "mine" : {
+        "width" : 25,
+        "height" : 25
+    },
+    "mobileMine" : {
+        "width" : 25,
+        "height" : 25,
+        "xVelocity": 0.4,
+        "yVelocity": 0.4
+    },
+    "verticalMine" : {
+        "width" : 25,
+        "height" : 25,
+        "xVelocity": 0.0,
+        "yVelocity": 0.4
+    },
+    "horizontalMine" : {
+        "width" : 25,
+        "height" : 25,
+        "xVelocity": 0.4,
+        "yVelocity": 0.0
+    }
+}

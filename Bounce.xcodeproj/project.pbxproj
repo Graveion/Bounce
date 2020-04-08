@@ -21,7 +21,21 @@
 		5BD02849243215C8002F5B36 /* GateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02846243215C8002F5B36 /* GateView.swift */; };
 		5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */; };
 		5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */; };
+
 		81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CB7B842438E38700154CC6 /* ScoreCell.xib */; };
+
+		5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284E24390DFB002F5B36 /* MineView.swift */; };
+		5BD02852243A114D002F5B36 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02851243A114D002F5B36 /* ViewFactory.swift */; };
+		5BD02854243A301C002F5B36 /* GameObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02853243A301C002F5B36 /* GameObjectView.swift */; };
+		5BD02857243A3A2A002F5B36 /* SpawnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02856243A3A2A002F5B36 /* SpawnManager.swift */; };
+		5BD0285C243A4C51002F5B36 /* gameData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5BD0285B243A4C51002F5B36 /* gameData.json */; };
+		5BD0285F243A4DB9002F5B36 /* ObjectParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0285E243A4DB9002F5B36 /* ObjectParams.swift */; };
+		5BD02861243A5755002F5B36 /* RotatingGateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02860243A5755002F5B36 /* RotatingGateParams.swift */; };
+		5BD02863243A6133002F5B36 /* RotatingGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02862243A6133002F5B36 /* RotatingGateView.swift */; };
+		5BD02865243A622B002F5B36 /* MovingObjectParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02864243A622B002F5B36 /* MovingObjectParams.swift */; };
+		5BD02867243A7804002F5B36 /* ParameterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02866243A7804002F5B36 /* ParameterData.swift */; };
+		5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0286A243D12B3002F5B36 /* Buff.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +77,19 @@
 		5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAreaView.swift; sourceTree = "<group>"; };
 		81CB7B842438E38700154CC6 /* ScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreCell.xib; sourceTree = "<group>"; };
+
+		5BD0284E24390DFB002F5B36 /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
+		5BD02851243A114D002F5B36 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		5BD02853243A301C002F5B36 /* GameObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectView.swift; sourceTree = "<group>"; };
+		5BD02856243A3A2A002F5B36 /* SpawnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnManager.swift; sourceTree = "<group>"; };
+		5BD0285B243A4C51002F5B36 /* gameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = gameData.json; sourceTree = "<group>"; };
+		5BD0285E243A4DB9002F5B36 /* ObjectParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectParams.swift; sourceTree = "<group>"; };
+		5BD02860243A5755002F5B36 /* RotatingGateParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingGateParams.swift; sourceTree = "<group>"; };
+		5BD02862243A6133002F5B36 /* RotatingGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingGateView.swift; sourceTree = "<group>"; };
+		5BD02864243A622B002F5B36 /* MovingObjectParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingObjectParams.swift; sourceTree = "<group>"; };
+		5BD02866243A7804002F5B36 /* ParameterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterData.swift; sourceTree = "<group>"; };
+		5BD0286A243D12B3002F5B36 /* Buff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buff.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +140,10 @@
 		5BD0280F243214F4002F5B36 /* Bounce */ = {
 			isa = PBXGroup;
 			children = (
+				5BD0285D243A4D9D002F5B36 /* Classes */,
+				5BD02858243A4BFD002F5B36 /* Data */,
+				5BD02855243A3A16002F5B36 /* Utility */,
+				5BD02850243A1136002F5B36 /* Factories */,
 				5BD02843243214FF002F5B36 /* Views */,
 				5BD02810243214F4002F5B36 /* AppDelegate.swift */,
 				5BD02812243214F4002F5B36 /* SceneDelegate.swift */,
@@ -153,8 +184,47 @@
 				81CB7B842438E38700154CC6 /* ScoreCell.xib */,
 				5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */,
 				5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */,
+				5BD0284E24390DFB002F5B36 /* MineView.swift */,
+				5BD02853243A301C002F5B36 /* GameObjectView.swift */,
+				5BD02862243A6133002F5B36 /* RotatingGateView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5BD02850243A1136002F5B36 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				5BD02851243A114D002F5B36 /* ViewFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		5BD02855243A3A16002F5B36 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5BD02856243A3A2A002F5B36 /* SpawnManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		5BD02858243A4BFD002F5B36 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5BD0285B243A4C51002F5B36 /* gameData.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5BD0285D243A4D9D002F5B36 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5BD0285E243A4DB9002F5B36 /* ObjectParams.swift */,
+				5BD02864243A622B002F5B36 /* MovingObjectParams.swift */,
+				5BD02860243A5755002F5B36 /* RotatingGateParams.swift */,
+				5BD02866243A7804002F5B36 /* ParameterData.swift */,
+				5BD0286A243D12B3002F5B36 /* Buff.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD02820243214F6002F5B36 /* LaunchScreen.storyboard in Resources */,
+				5BD0285C243A4C51002F5B36 /* gameData.json in Resources */,
 				5BD0281D243214F6002F5B36 /* Assets.xcassets in Resources */,
 				81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */,
 				5BD02818243214F4002F5B36 /* Main.storyboard in Resources */,
@@ -289,13 +360,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BD02861243A5755002F5B36 /* RotatingGateParams.swift in Sources */,
+				5BD0285F243A4DB9002F5B36 /* ObjectParams.swift in Sources */,
+				5BD02865243A622B002F5B36 /* MovingObjectParams.swift in Sources */,
 				5BD02849243215C8002F5B36 /* GateView.swift in Sources */,
 				5BD02815243214F4002F5B36 /* ViewController.swift in Sources */,
 				5BD02848243215C8002F5B36 /* LightningView.swift in Sources */,
+				5BD02863243A6133002F5B36 /* RotatingGateView.swift in Sources */,
+				5BD02854243A301C002F5B36 /* GameObjectView.swift in Sources */,
 				5BD02811243214F4002F5B36 /* AppDelegate.swift in Sources */,
+				5BD02867243A7804002F5B36 /* ParameterData.swift in Sources */,
 				5BD02847243215C8002F5B36 /* BoxView.swift in Sources */,
 				5BD02813243214F4002F5B36 /* SceneDelegate.swift in Sources */,
+				5BD02857243A3A2A002F5B36 /* SpawnManager.swift in Sources */,
 				5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */,
+				5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */,
+				5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */,
+				5BD02852243A114D002F5B36 /* ViewFactory.swift in Sources */,
 				5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */,
 				5BD0281B243214F4002F5B36 /* Bounce.xcdatamodeld in Sources */,
 			);
