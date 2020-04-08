@@ -11,8 +11,8 @@ import UIKit
 
 class GateView : GameObjectView
 {
-    var collision = CGRect()
-
+    
+    
     override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
         super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
     
@@ -22,18 +22,17 @@ class GateView : GameObjectView
         let leftBoxView = UIView(frame: leftBox)
         leftBoxView.backgroundColor = UIColor.blue
         
-        
         let rightBox : CGRect = CGRect(x: frame.width - 8,y: frame.height/2 - 4,width: 8,height: 8)
         let rightBoxView = UIView(frame: rightBox)
         rightBoxView.backgroundColor = UIColor.blue
-    
+        
         addSubview(leftBoxView)
         addSubview(rightBoxView)
-        
+                
         let lightningFrame : CGRect = CGRect(x: 8.0,y: 0.0,width: frame.width - 8,height: frame.height)
         addSubview(LightningView(frame: lightningFrame))
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -63,7 +62,7 @@ extension UIView {
             rotationAnimation.toValue = Float.pi * 2.0
             rotationAnimation.duration = duration
             rotationAnimation.repeatCount = Float.infinity
-
+            
             layer.add(rotationAnimation, forKey: UIView.rotationAnimationKey)
         }
     }

@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-class GameObjectView : UIView
+//need to split this up between objkects that move and those that don't really!
+//as some objects will be calcing a speed mod for no reason
+
+class GameObjectView : UIView, RemoveFromOwnerDelegate
 {
     var x : CGFloat = 0.0
     var y : CGFloat = 0.0
@@ -17,7 +20,7 @@ class GameObjectView : UIView
     var yVelocity : CGFloat = 0.0
     var gameBounds = CGRect()
     var hp = 1
-    
+    var buffs = [Buff]()
     
     init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds : CGRect) {
         x = frame.origin.x
@@ -38,6 +41,10 @@ class GameObjectView : UIView
         super.updateConstraints()
     }
     
+    func removeBuff(buff: Buff) {
+        buffs.removeAll(where: { $0 === buff })
+    }
+    
     func update()
     {
         if ((x + self.frame.width) > gameBounds.maxX - xVelocity || x < gameBounds.minX)
@@ -54,11 +61,19 @@ class GameObjectView : UIView
     
     func addVelocity()
     {
-        x += xVelocity
-        y += yVelocity
         
-        self.frame.origin.x += xVelocity
-        self.frame.origin.y += yVelocity
+        //grab all speed buffs
+        //we'll have them be multiplicative rather than additive
+        var speedBonus = buffs.filter({ $0.type == BuffType.speed})
+                              .reduce(1.0, { x, y in
+                                    x * (1.0+y.value)
+                              })
+        
+        x += xVelocity * CGFloat(speedBonus)
+        y += yVelocity * CGFloat(speedBonus)
+        
+        self.frame.origin.x += xVelocity * CGFloat(speedBonus)
+        self.frame.origin.y += yVelocity * CGFloat(speedBonus)
     }
     
     func remove()

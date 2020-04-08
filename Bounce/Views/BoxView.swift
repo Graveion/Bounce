@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 protocol SpawnNewBoxDelegate: class {
-     func spawnNewBox(_ sender: BoxView)
+    func spawnNewBox(_ sender: BoxView)
 }
 
 protocol GameOverDelegate: class {
-     func gameOver()
+    func gameOver()
 }
 
 class BoxView : GameObjectView
@@ -28,7 +28,7 @@ class BoxView : GameObjectView
     
     override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
         super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
-
+        
         colours.append(UIColor.red)
         colours.append(UIColor.yellow)
         colours.append(UIColor.green)
@@ -40,7 +40,7 @@ class BoxView : GameObjectView
         self.layer.backgroundColor = colours[Int.random(in: 0..<colours.count)].cgColor
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 1
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -69,9 +69,9 @@ class BoxView : GameObjectView
         }
     }
     
-    func boxBuff()
+    func addBuff(buff : Buff)
     {
-        animate()
+        buffs.append(buff)
     }
     
     func addArmour(stacks : Int)
@@ -79,16 +79,16 @@ class BoxView : GameObjectView
         armour += stacks
     }
     
-    func animate()
+    func animateHP()
     {
         UIView.animate(withDuration: 0.5,
-                    delay: 0.0,
-                    usingSpringWithDamping: 0.3,
-                    initialSpringVelocity: 3,
-                    options: UIView.AnimationOptions.curveEaseInOut,
-                    animations: ({
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.3,
+                       initialSpringVelocity: 3,
+                       options: UIView.AnimationOptions.curveEaseInOut,
+                       animations: ({
                         self.transform = CGAffineTransform(scaleX : 1.1, y: 1.1)
-                }))
+                       }))
         
         let newColour = nextColour().cgColor
         
@@ -96,7 +96,7 @@ class BoxView : GameObjectView
         colourAnim.fromValue = self.layer.backgroundColor
         colourAnim.toValue = newColour
         colourAnim.duration = 1.0
-                   
+        
         self.layer.add(colourAnim, forKey: "backgroundColor")
         self.layer.backgroundColor = newColour
     }

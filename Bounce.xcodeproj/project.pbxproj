@@ -31,6 +31,7 @@
 		5BD02863243A6133002F5B36 /* RotatingGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02862243A6133002F5B36 /* RotatingGateView.swift */; };
 		5BD02865243A622B002F5B36 /* MovingObjectParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02864243A622B002F5B36 /* MovingObjectParams.swift */; };
 		5BD02867243A7804002F5B36 /* ParameterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02866243A7804002F5B36 /* ParameterData.swift */; };
+		5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0286A243D12B3002F5B36 /* Buff.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		5BD02862243A6133002F5B36 /* RotatingGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingGateView.swift; sourceTree = "<group>"; };
 		5BD02864243A622B002F5B36 /* MovingObjectParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingObjectParams.swift; sourceTree = "<group>"; };
 		5BD02866243A7804002F5B36 /* ParameterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterData.swift; sourceTree = "<group>"; };
+		5BD0286A243D12B3002F5B36 /* Buff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buff.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				5BD02864243A622B002F5B36 /* MovingObjectParams.swift */,
 				5BD02860243A5755002F5B36 /* RotatingGateParams.swift */,
 				5BD02866243A7804002F5B36 /* ParameterData.swift */,
+				5BD0286A243D12B3002F5B36 /* Buff.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				5BD02857243A3A2A002F5B36 /* SpawnManager.swift in Sources */,
 				5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */,
 				5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */,
+				5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */,
 				5BD02852243A114D002F5B36 /* ViewFactory.swift in Sources */,
 				5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */,
 				5BD0281B243214F4002F5B36 /* Bounce.xcdatamodeld in Sources */,

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #1 in ViewController.gameLoop():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "box.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "BoxView.update():BoxView.swift">
          <PersistentStrings>
             <PersistentString
@@ -13,6 +21,20 @@
             </PersistentString>
             <PersistentString
                value = "bounds.maxX">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Buff.scaleBuff():Buff.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "value">
+            </PersistentString>
+            <PersistentString
+               value = "reduction">
+            </PersistentString>
+            <PersistentString
+               value = "timerTracker">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

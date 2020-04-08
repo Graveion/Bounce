@@ -12,9 +12,6 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     var gameBounds = CGRect()
     
-    var boxWidth : CGFloat = 16.0
-    var boxHeight : CGFloat = 16.0
-    
     var boxes = [BoxView]()
     var gates = [GateView]()
     var mines = [MineView]()
@@ -26,16 +23,16 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     var mineSpawnTimer = Timer()
     
     var viewFactory = ViewFactory(screenWidth: 0,screenHeight: 0, gameBounds: CGRect.zero)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         //calculate size of control area and use it to cut down the game bounds (currently set to 1/8 screen height)
         let controlAreaRect = CGRect(x: 0,
-                                 y: (self.view.frame.height - self.view.frame.height/8),
+                                 y: (self.view.frame.height - self.view.frame.height/12),
                                  width: self.view.frame.width,
-                                 height: self.view.frame.height/8)
+                                 height: self.view.frame.height/12)
         
         controlArea = ControlAreaView(frame: controlAreaRect)
         
@@ -54,8 +51,28 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         generateBounds()
         
         viewFactory = ViewFactory(screenWidth: self.view.frame.width, screenHeight: self.view.frame.height, gameBounds: gameBounds)
+        
+        //just testing
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     
         initialiseGame()
+    }
+    
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
+
+        let point = sender.location(in: self.view)
+
+        //check location half
+        if (point.x < self.view.frame.maxX / 2)
+        {
+            //flip y
+            boxes.forEach{ box in box.xVelocity *= -1 }
+        }
+        else
+        {
+            boxes.forEach{ box in box.yVelocity *= -1 }
+        }
     }
     
     func initialiseGame()
@@ -113,11 +130,12 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
                         height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height))
     }
     
+    
+    //spawn logic to be moved into spawnManager eventually
     func spawnMine()
     {
         if (mines.count < 4)
         {
-            
             var mine : MineView
             
             let selector = Int.random(in: 0...3)
@@ -142,7 +160,19 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     func spawnGate()
     {
-        let gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
+        var gate : GateView
+        
+        let selector = Int.random(in: 0...1)
+        
+        switch selector {
+        case 0:
+             gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
+        case 1:
+            gate = viewFactory.spawnObject(type: GameObject.rotatingGate) as! GateView
+        default:
+            gate = viewFactory.spawnObject(type: GameObject.gate) as! GateView
+        }
+        
         gates.append(gate)
         self.view.addSubview(gate)
     }
@@ -163,15 +193,24 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     {
         boxes.forEach{ box in
             
-            gates.forEach {gate in
-                if (box.frame.intersects(gate.frame))
+            gates.reversed().forEach {gate in
+                if (gate.layer.hitTest(box.center) != nil)
                 {
                     //speed box up temporarily?
+                    //40% inital boost
+                    //scaled down over 3 seconds
+                    box.addBuff(buff: Buff(value: 0.4, duration: .long, type: .speed, owner: box))
                     
                     //despawn gate
+                    gates.remove(at: gates.firstIndex(of: gate)!)
+                    
+                    gate.removeFromSuperview()
                     
                     //add some score
                     scoreboard.addScore(value: 100)
+                    
+                    //spawn a new gate
+                    spawnGate()
                 }
             }
             
@@ -195,5 +234,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         //remove from array
         boxes.removeAll(where: { $0.bounces == 0 })
     }
+    
+    
 }
 
