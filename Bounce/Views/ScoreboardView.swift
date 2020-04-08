@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 class ScoreboardView : UIView {
-    var score = 0
+    var score = 0 {
+        didSet{
+            scoreFigure.text = String(score)
+        }
+    }
 
     @IBOutlet private var scoreLabel: UILabel! {
         didSet {
@@ -21,6 +25,7 @@ class ScoreboardView : UIView {
     @IBOutlet private var scoreFigure: UILabel! {
         didSet {
             scoreFigure.textColor = .systemGray
+            scoreFigure.text = String(score)
         }
     }
     

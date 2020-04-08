@@ -37,12 +37,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         
         
         //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
-        let scoreboardRect = CGRect(x: 0,
-              y: 0,
-              width: 426,
-              height: 129)
-
-        scoreboard = ScoreboardView(frame: scoreboardRect)
+        scoreboard = ScoreboardView(frame: .zero)
         self.view.addSubview(scoreboard)
 
         
@@ -128,9 +123,9 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     func generateBounds()
     {
         gameBounds = CGRect(x: 0,
-                        y: scoreboard.frame.height,
+                        y: self.view.frame.height/12,
                         width: self.view.frame.width,
-                        height: (self.view.frame.height - controlArea.frame.height - scoreboard.frame.height))
+                        height: (self.view.frame.height - controlArea.frame.height - self.view.frame.height/12))
     }
     
     
