@@ -18,13 +18,11 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
     var controlArea = ControlAreaView()
     var scoreboard = ScoreboardView()
-    
     var timer = Timer()
-    var mineSpawnTimer = Timer()
-    
+    var mineSpawnTimer = Timer()   
     var viewFactory = ViewFactory(screenWidth: 0,screenHeight: 0, gameBounds: CGRect.zero)
     
-    override func viewDidLoad() {
+  override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -35,16 +33,21 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
                                  height: self.view.frame.height/12)
         
         controlArea = ControlAreaView(frame: controlAreaRect)
+        self.view.addSubview(controlArea)
         
         
         //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
         let scoreboardRect = CGRect(x: 0,
-        y: 0,
-        width: self.view.frame.width,
-        height: self.view.frame.height/12)
-        
+              y: 0,
+              width: 426,
+              height: 129)
+
         scoreboard = ScoreboardView(frame: scoreboardRect)
+        self.view.addSubview(scoreboard)
+
         
+        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
+ 
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
@@ -157,6 +160,12 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
             self.view.addSubview(mine)
         }
     }
+//
+//    func createScoreboardView() -> UIView {
+//        let scoreboardView = ScoreboardView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/12))
+//              self.view.addSubview(scoreboardView)
+//              return scoreboardView
+//    }
     
     func spawnGate()
     {

@@ -21,6 +21,9 @@
 		5BD02849243215C8002F5B36 /* GateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02846243215C8002F5B36 /* GateView.swift */; };
 		5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */; };
 		5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */; };
+
+		81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CB7B842438E38700154CC6 /* ScoreCell.xib */; };
+
 		5BD0284F24390DFB002F5B36 /* MineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0284E24390DFB002F5B36 /* MineView.swift */; };
 		5BD02852243A114D002F5B36 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02851243A114D002F5B36 /* ViewFactory.swift */; };
 		5BD02854243A301C002F5B36 /* GameObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02853243A301C002F5B36 /* GameObjectView.swift */; };
@@ -32,6 +35,7 @@
 		5BD02865243A622B002F5B36 /* MovingObjectParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02864243A622B002F5B36 /* MovingObjectParams.swift */; };
 		5BD02867243A7804002F5B36 /* ParameterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02866243A7804002F5B36 /* ParameterData.swift */; };
 		5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0286A243D12B3002F5B36 /* Buff.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,8 @@
 		5BD02846243215C8002F5B36 /* GateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateView.swift; sourceTree = "<group>"; };
 		5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlAreaView.swift; sourceTree = "<group>"; };
+		81CB7B842438E38700154CC6 /* ScoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreCell.xib; sourceTree = "<group>"; };
+
 		5BD0284E24390DFB002F5B36 /* MineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
 		5BD02851243A114D002F5B36 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		5BD02853243A301C002F5B36 /* GameObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectView.swift; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 		5BD02864243A622B002F5B36 /* MovingObjectParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingObjectParams.swift; sourceTree = "<group>"; };
 		5BD02866243A7804002F5B36 /* ParameterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterData.swift; sourceTree = "<group>"; };
 		5BD0286A243D12B3002F5B36 /* Buff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buff.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +181,7 @@
 				5BD02844243215C8002F5B36 /* BoxView.swift */,
 				5BD02846243215C8002F5B36 /* GateView.swift */,
 				5BD02845243215C8002F5B36 /* LightningView.swift */,
+				81CB7B842438E38700154CC6 /* ScoreCell.xib */,
 				5BD0284A2438BDC2002F5B36 /* ScoreboardView.swift */,
 				5BD0284C2438BDFF002F5B36 /* ControlAreaView.swift */,
 				5BD0284E24390DFB002F5B36 /* MineView.swift */,
@@ -326,6 +334,7 @@
 				5BD02820243214F6002F5B36 /* LaunchScreen.storyboard in Resources */,
 				5BD0285C243A4C51002F5B36 /* gameData.json in Resources */,
 				5BD0281D243214F6002F5B36 /* Assets.xcassets in Resources */,
+				81CB7B852438E38700154CC6 /* ScoreCell.xib in Resources */,
 				5BD02818243214F4002F5B36 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
