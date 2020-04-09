@@ -11,7 +11,7 @@ import UIKit
 
 class GateView : GameObjectView
 {
-    
+    var collisionFrame = CGRect()
     
     override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
         super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
@@ -25,6 +25,8 @@ class GateView : GameObjectView
         let rightBox : CGRect = CGRect(x: frame.width - 8,y: frame.height/2 - 4,width: 8,height: 8)
         let rightBoxView = UIView(frame: rightBox)
         rightBoxView.backgroundColor = UIColor.blue
+        
+        collisionFrame = CGRect(x: frame.origin.x,y: frame.origin.y + frame.height/2 - 4,width: frame.width - 8,height: 8)
         
         addSubview(leftBoxView)
         addSubview(rightBoxView)
@@ -43,6 +45,13 @@ class GateView : GameObjectView
     
     override func draw(_ rect: CGRect) {
         
+    }
+    
+    func collisionBox() -> UIBezierPath
+    {
+        let path = UIBezierPath(rect :collisionFrame)
+        path.apply(transform)
+        return path
     }
     
     func animate()

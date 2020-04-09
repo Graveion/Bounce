@@ -198,7 +198,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         boxes.forEach{ box in
             
             gates.reversed().forEach {gate in
-                if (gate.layer.hitTest(box.center) != nil)
+                if (gate.collisionBox().contains(box.center))
                 {
                     //speed box up temporarily?
                     //40% inital boost

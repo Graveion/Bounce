@@ -3,8 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Buff.scaleBuff():Buff.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "value">
+            </PersistentString>
+            <PersistentString
+               value = "reduction">
+            </PersistentString>
+            <PersistentString
+               value = "timerTracker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in ViewController.gameLoop():ViewController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "gate.collisionBox()">
+            </PersistentString>
             <PersistentString
                value = "box.frame">
             </PersistentString>
@@ -25,16 +42,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Buff.scaleBuff():Buff.swift">
+         contextName = "MovingObjectParams.init(from:):MovingObjectParams.swift">
          <PersistentStrings>
             <PersistentString
-               value = "value">
+               value = "var test : Double = try values.decode(Double.self, forKey: .xVelocity)">
             </PersistentString>
             <PersistentString
-               value = "reduction">
-            </PersistentString>
-            <PersistentString
-               value = "timerTracker">
+               value = "xVelocity = try values.decode(CGFloat.self, forKey: .xVelocity)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,21 +61,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MovingObjectParams.init(from:):MovingObjectParams.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "var test : Double = try values.decode(Double.self, forKey: .xVelocity)">
-            </PersistentString>
-            <PersistentString
-               value = "xVelocity = try values.decode(CGFloat.self, forKey: .xVelocity)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "ParameterData.init(from:):ParameterData.swift">
          <PersistentStrings>
             <PersistentString
                value = "forType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GateView.collisionBox():GateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "test.">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
