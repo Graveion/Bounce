@@ -9,8 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScoreboardView" customModule="Bounce" customModuleProvider="target">
             <connections>
-                <outlet property="scoreFigure" destination="zCr-Dr-E3y" id="FOd-eV-98q"/>
-                <outlet property="scoreLabel" destination="efd-0k-lku" id="Szq-Dn-dBE"/>
+                <outlet property="scoreFigure" destination="zCr-Dr-E3y" id="k8t-Qe-Bms"/>
+                <outlet property="scoreLabel" destination="efd-0k-lku" id="x5R-Lq-eOH"/>
+                <outlet property="view" destination="qiH-ck-kMq" id="nND-kz-5Gk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,35 +28,38 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="THE BEST GAME IN THE WORLD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGs-jf-yq8">
-                    <rect key="frame" x="84" y="52" width="258.5" height="25"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCr-Dr-E3y">
-                    <rect key="frame" x="207" y="85" width="24" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCr-Dr-E3y">
+                    <rect key="frame" x="207" y="85" width="20" height="24"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="QDQ-es-b9G"/>
-                        <constraint firstAttribute="width" constant="24" id="ZJW-uA-DrD"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="t8i-id-3ff"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </label>
+                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="THE BEST GAME IN THE WORLDDDDDDDDDD" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGs-jf-yq8">
+                    <rect key="frame" x="115" y="33.5" width="196.5" height="43.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="zCr-Dr-E3y" firstAttribute="top" secondItem="NGs-jf-yq8" secondAttribute="bottom" constant="8" id="9aI-X8-ozu"/>
                 <constraint firstAttribute="bottom" secondItem="zCr-Dr-E3y" secondAttribute="bottom" constant="20" id="Ax9-C9-TuQ"/>
                 <constraint firstAttribute="bottom" secondItem="efd-0k-lku" secondAttribute="bottom" constant="20" id="BXH-Ji-EUB"/>
+                <constraint firstItem="AFz-xO-8Qq" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NGs-jf-yq8" secondAttribute="trailing" constant="80" id="G9G-im-Dxv"/>
+                <constraint firstItem="NGs-jf-yq8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qiH-ck-kMq" secondAttribute="leading" constant="80" id="Kdc-Rl-aFo"/>
                 <constraint firstItem="efd-0k-lku" firstAttribute="leading" secondItem="AFz-xO-8Qq" secondAttribute="leading" constant="154" id="QTm-9K-EBy"/>
                 <constraint firstItem="zCr-Dr-E3y" firstAttribute="leading" secondItem="efd-0k-lku" secondAttribute="trailing" constant="2" id="mmE-gL-uEg"/>
-                <constraint firstItem="NGs-jf-yq8" firstAttribute="centerX" secondItem="qiH-ck-kMq" secondAttribute="centerX" id="pBg-hM-hBn"/>
-                <constraint firstItem="NGs-jf-yq8" firstAttribute="centerY" secondItem="qiH-ck-kMq" secondAttribute="centerY" id="ped-ln-yq7"/>
                 <constraint firstItem="efd-0k-lku" firstAttribute="centerY" secondItem="zCr-Dr-E3y" secondAttribute="centerY" id="tXn-65-u9f"/>
                 <constraint firstItem="efd-0k-lku" firstAttribute="top" secondItem="NGs-jf-yq8" secondAttribute="bottom" constant="8" id="w9W-Sq-gXf"/>
+                <constraint firstItem="NGs-jf-yq8" firstAttribute="centerX" secondItem="qiH-ck-kMq" secondAttribute="centerX" id="wMi-De-Nnt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="AFz-xO-8Qq"/>
