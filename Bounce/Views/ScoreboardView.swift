@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class ScoreboardView : UIView {
+
+    @IBOutlet weak var view: UIView!
+    
     var score = 0 {
         didSet{
             scoreFigure.text = String(score)
@@ -31,27 +34,19 @@ class ScoreboardView : UIView {
     
     override init(frame: CGRect) {
     super.init(frame : frame)
-        commonInit()
-
         if let nib = Bundle.main.loadNibNamed("ScoreCell", owner: self),
              let nibView = nib.first as? UIView {
-//               nibView.frame =
-               addSubview(nibView)
+            nibView.frame = bounds
+            nibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            addSubview(nibView)
         }
-
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
-    }
-
-    private func commonInit() {
-        backgroundColor = UIColor.systemPink
     }
     
     func addScore(value: Int) {
         score += value
     }
 }
-

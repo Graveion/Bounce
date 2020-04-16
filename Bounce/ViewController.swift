@@ -24,6 +24,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     
   override func viewDidLoad() {
         super.viewDidLoad()
+//        addScoreBoard()
         // Do any additional setup after loading the view.
         
         //calculate size of control area and use it to cut down the game bounds (currently set to 1/8 screen height)
@@ -35,14 +36,7 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         controlArea = ControlAreaView(frame: controlAreaRect)
         self.view.addSubview(controlArea)
         
-        
-        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
-        scoreboard = ScoreboardView(frame: .zero)
-        self.view.addSubview(scoreboard)
 
-        
-        //calculate size of scoreboard and use it to cut down the game bounds (currently set to 1/12 screen height)
- 
         //calculate currents bounds we want to limit the boxes to
         //later when we add some more ui elements we limit the bounds
         //the the "playing area"
@@ -53,7 +47,6 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         //just testing
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(_:)))
         self.view.addGestureRecognizer(tapGesture)
-    
         initialiseGame()
     }
     
@@ -81,7 +74,10 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
         
         self.view.addSubview(controlArea)
         self.view.addSubview(scoreboard)
-        
+        scoreboard.frame = CGRect(x: 0, y: 0,
+                                  width: self.view.bounds.width,
+                                  height: self.view.bounds.height/5)
+
         spawnBox()
         spawnGate()
         
@@ -123,9 +119,9 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
     func generateBounds()
     {
         gameBounds = CGRect(x: 0,
-                        y: self.view.frame.height/12,
+                        y: self.view.bounds.height/5,
                         width: self.view.frame.width,
-                        height: (self.view.frame.height - controlArea.frame.height - self.view.frame.height/12))
+                        height: (self.view.frame.height - controlArea.frame.height - self.view.bounds.height/5))
     }
     
     
@@ -155,12 +151,6 @@ class ViewController: UIViewController, SpawnNewBoxDelegate, GameOverDelegate {
             self.view.addSubview(mine)
         }
     }
-//
-//    func createScoreboardView() -> UIView {
-//        let scoreboardView = ScoreboardView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height/12))
-//              self.view.addSubview(scoreboardView)
-//              return scoreboardView
-//    }
     
     func spawnGate()
     {
