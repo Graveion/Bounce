@@ -44,7 +44,7 @@ class SpawnManager : RemoveFromOwnerDelegate
             
             if (self.gameObjects.count == 2) {return}
 
-            let selector = Int.random(in: 5...5)
+            let selector = Int.random(in: 0...5)
 
             switch selector {
             case 0:
