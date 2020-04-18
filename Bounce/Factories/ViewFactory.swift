@@ -14,66 +14,25 @@ typealias Size = (width: CGFloat, height : CGFloat)
 
 class ViewFactory
 {
-    var gameBounds : CGRect
-    let spawnManager : SpawnManager
-    
-    init(screenWidth : CGFloat, screenHeight : CGFloat, gameBounds: CGRect)
+    func spawnObject(type : GameObject, params : ObjectParams) -> GameObjectView?
     {
-        //use width/Height against 11 Pro Max to calc a ratio to scale against
-        //assuming aspect ratio is fairly consistent..
-        self.gameBounds = gameBounds
-        self.spawnManager = SpawnManager(gameBounds: gameBounds)
-    }
-    
-    func spawnObject(type : GameObject) -> UIView
-    {
-        switch type {
-        case .box:
-            let params = spawnManager.params.forType[type.rawValue] as! MovingObjectParams
-            return BoxView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                           xVelocity: params.xVelocity,
-                           yVelocity: params.yVelocity,
-                           gameBounds: self.gameBounds)
-        case .gate:
-            let params = spawnManager.params.forType[type.rawValue]!
-            return GateView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                            xVelocity: 0,
-                            yVelocity: 0,
-                            gameBounds: self.gameBounds)
-        case .rotatingGate:
-            let params = spawnManager.params.forType[type.rawValue] as! RotatingGateParams
-            return RotatingGateView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                                    xVelocity: 0,
-                                    yVelocity: 0,
-                                    gameBounds: self.gameBounds,
-                                    loopDuration: params.loopDuration)
-        case .mine:
-            let params = spawnManager.params.forType[type.rawValue]!
-            return MineView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                            xVelocity: 0,
-                            yVelocity: 0,
-                            gameBounds: self.gameBounds)
+        switch (params, type) {
+        case (let params as MovingObjectParams, .box):
+            return BoxView(params: params)
+        case (let params as ObjectParams, .gate):
+            return GateView(params: params)
+        case (let params as RotatingGateParams, .rotatingGate):
+            return RotatingGateView(params : params)
+        case (let params as MovingObjectParams, .mine):
+            return MineView(params : params)
+        case (let params as MovingObjectParams, .mobileMine):
+            return MineView(params : params)
+        case (let params as MovingObjectParams, .verticalMine):
+            return MineView(params : params)
+        case (let params as MovingObjectParams, .horizontalMine):
+            return MineView(params : params)
             
-        case .mobileMine:
-            let params = spawnManager.params.forType[type.rawValue] as! MovingObjectParams
-            return MineView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                            xVelocity: params.xVelocity,
-                            yVelocity: params.yVelocity,
-                            gameBounds: self.gameBounds)
-            
-        case .verticalMine:
-            let params = spawnManager.params.forType[type.rawValue] as! MovingObjectParams
-            return MineView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                            xVelocity: params.xVelocity,
-                            yVelocity: params.yVelocity,
-                            gameBounds: self.gameBounds)
-            
-        case .horizontalMine:
-            let params = spawnManager.params.forType[type.rawValue] as! MovingObjectParams
-            return MineView(frame: spawnManager.randomSafeLocationInBounds(width: params.width, height: params.height),
-                            xVelocity: params.xVelocity,
-                            yVelocity: params.yVelocity,
-                            gameBounds: self.gameBounds)
+        default: return nil
         }
     }
 }

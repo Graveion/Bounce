@@ -30,7 +30,7 @@ class ParameterData: Decodable {
             case .rotatingGate:
                 forType[type.rawValue] = try values.decode(RotatingGateParams.self, forKey: type)
             case .mine:
-                forType[type.rawValue] = try values.decode(ObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
             case .mobileMine:
                 forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
             case .verticalMine:

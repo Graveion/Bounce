@@ -13,7 +13,7 @@ import UIKit
 //nothing over that duration then call delegate for removal
 
 protocol RemoveFromOwnerDelegate: class {
-    func removeBuff(buff : Buff)
+    func remove(_ obj : AnyObject)
 }
 
 class Buff
@@ -56,7 +56,7 @@ class Buff
         if (self.timerTracker >= duration.rawValue)
         {
             timer.invalidate()
-            owner?.removeBuff(buff: self)
+            owner?.remove(self)
         }
     }
 }

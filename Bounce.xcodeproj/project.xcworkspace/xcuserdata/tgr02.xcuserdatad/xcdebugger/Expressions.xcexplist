@@ -3,27 +3,117 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Buff.scaleBuff():Buff.swift">
+         contextName = "BoxView.addGravity():BoxView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "value">
-            </PersistentString>
-            <PersistentString
-               value = "reduction">
-            </PersistentString>
-            <PersistentString
-               value = "timerTracker">
+               value = "body.acceleration.x">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in ViewController.gameLoop():ViewController.swift">
+         contextName = "Quadtree.checkQuadrant(_:):Quadtree.swift">
          <PersistentStrings>
             <PersistentString
-               value = "gate.collisionBox()">
+               value = "square.squareNW()">
             </PersistentString>
             <PersistentString
-               value = "box.frame">
+               value = "square.squareNE()">
+            </PersistentString>
+            <PersistentString
+               value = "square.squareSE()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GateView.collisionBox():GateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collisionFrame.applying(transform)">
+            </PersistentString>
+            <PersistentString
+               value = "bounds">
+            </PersistentString>
+            <PersistentString
+               value = "frame.width/4">
+            </PersistentString>
+            <PersistentString
+               value = "bounds.applying(transform)">
+            </PersistentString>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "frame.insetBy(dx: 8, dy: frame.height/4)">
+            </PersistentString>
+            <PersistentString
+               value = "frame.height/4">
+            </PersistentString>
+            <PersistentString
+               value = "collisionFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RotatingGateView.init(params:):RotatingGateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collisionFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SpawnManager.spawnPlayer():SpawnManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "spawnDelegate">
+            </PersistentString>
+            <PersistentString
+               value = "spawnObject(type: GameObject.box)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Quadtree.insert(_:):Quadtree.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "square">
+            </PersistentString>
+            <PersistentString
+               value = "NW">
+            </PersistentString>
+            <PersistentString
+               value = "CheckInternal()">
+            </PersistentString>
+            <PersistentString
+               value = "NE">
+            </PersistentString>
+            <PersistentString
+               value = "SW">
+            </PersistentString>
+            <PersistentString
+               value = "SE">
+            </PersistentString>
+            <PersistentString
+               value = "body">
+            </PersistentString>
+            <PersistentString
+               value = "body.state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in RotatingGateView.init(params:):RotatingGateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.timerTracker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SpawnManager.init(gameBounds:):SpawnManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "params.forType">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -42,6 +132,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "overlappingPoints(a1:a2:b1:b2:):GameObjectView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "aPoints">
+            </PersistentString>
+            <PersistentString
+               value = "bPoints">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ViewController.gameLoop():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gate.collisionBox()">
+            </PersistentString>
+            <PersistentString
+               value = "box.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.gameLoop():ViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "MovingObjectParams.init(from:):MovingObjectParams.swift">
          <PersistentStrings>
             <PersistentString
@@ -53,10 +168,43 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SpawnManager.init(gameBounds:):SpawnManager.swift">
+         contextName = "SpawnManager.spawnObject(type:):SpawnManager.swift">
          <PersistentStrings>
             <PersistentString
-               value = "params.forType">
+               value = "type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Buff.scaleBuff():Buff.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "value">
+            </PersistentString>
+            <PersistentString
+               value = "reduction">
+            </PersistentString>
+            <PersistentString
+               value = "timerTracker">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GateView.init(params:):GateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collisionFrame.applying(transform)">
+            </PersistentString>
+            <PersistentString
+               value = "print(label.frame, label.bounds)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GateView.invertTransform():GateView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -69,13 +217,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GateView.collisionBox():GateView.swift">
+         contextName = "closure #3 in ViewController.gameLoop():ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame">
+               value = "collisionObjects[i].collisionBox()">
             </PersistentString>
             <PersistentString
-               value = "test.">
+               value = "cObj.collisionBox()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "collision(a:b:):GameObjectView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "aPoints[2].y &lt; bPoints[1].y">
+            </PersistentString>
+            <PersistentString
+               value = "aPoints[0].x &lt; bPoints[1].x">
+            </PersistentString>
+            <PersistentString
+               value = "aPoints[1].x &gt; bPoints[0].x">
+            </PersistentString>
+            <PersistentString
+               value = "aPoints[1].y &gt; bPoints[2].y">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
