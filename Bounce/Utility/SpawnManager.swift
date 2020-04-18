@@ -9,18 +9,25 @@
 import Foundation
 import UIKit
 
-class SpawnManager
+protocol ObjectHandlerDelegate: class {
+    func newObject(_ sender: GameObjectView)
+    func removeObject(_ sender: GameObjectView)
+}
+
+class SpawnManager : RemoveFromOwnerDelegate
 {
-    var gameBounds : CGRect
-    var params = ParameterData()
+    func remove(_ obj: AnyObject) {
+        gameObjects.removeAll(where: { $0 === obj })
+        spawnDelegate?.removeObject(obj as! GameObjectView)
+    }
     
-    init(gameBounds : CGRect)
+    var params = ParameterData()
+    var viewFactory = ViewFactory()
+    weak var spawnDelegate: ObjectHandlerDelegate?
+    var gameObjects = [GameObjectView]()
+    
+    init()
     {
-        self.gameBounds = gameBounds
-        //it aint pretty but...
-        //switch on object name in json object
-        //case.box = return BoxParams etc...
-        
         if let path = Bundle.main.path(forResource: "gameData", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -30,20 +37,54 @@ class SpawnManager
                 print(error)
             }
         }
+        
+        //start a random object spawn timer and delegate back
+        let spawnTimer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
+            var spawn : GameObjectView
+            
+            if (self.gameObjects.count == 2) {return}
+
+            let selector = Int.random(in: 5...5)
+
+            switch selector {
+            case 0:
+                spawn = self.spawnObject(type: GameObject.mine) as! MineView
+            case 1:
+                spawn = self.spawnObject(type: GameObject.mobileMine) as! MineView
+            case 2:
+                spawn = self.spawnObject(type: GameObject.verticalMine) as! MineView
+            case 3:
+                spawn = self.spawnObject(type: GameObject.horizontalMine) as! MineView
+            case 4:
+                spawn = self.spawnObject(type: GameObject.gate) as! GateView
+            case 5:
+                spawn = self.spawnObject(type: GameObject.rotatingGate) as! GateView
+            default:
+                spawn = self.spawnObject(type: GameObject.mine) as! MineView
+            }
+
+            self.spawnDelegate?.newObject(spawn)
+        }
     }
     
-    //this will work for now but we need a more complicated solution thats ensures
-    //that for example a mine cant spawn on the player or a gate spawns on a mine
-    func randomSafeLocationInBounds(width : CGFloat, height : CGFloat) -> CGRect
+    func spawnObject(type : GameObject) -> GameObjectView?
     {
-        //to take into account rotation
-        var w = width + (height/2)
-        var h = height + (width/2)
-        
-        return CGRect(
-            x: CGFloat.random(in: gameBounds.minX + w...gameBounds.maxX - w),
-            y: CGFloat.random(in: gameBounds.minY + h...gameBounds.maxY - h),
-            width: width,
-            height: height)
+        let newObj = viewFactory.spawnObject(type: type, params: params.forType[type.rawValue]!)
+        newObj?.owner = self
+        gameObjects.append(newObj!)
+        return newObj
+    }
+    
+    func spawnPlayer() -> BoxView
+    {
+        return (spawnObject(type: GameObject.box) as! BoxView)
+    }
+    
+    func spawnGate()
+    {
+        spawnDelegate?.newObject(spawnObject(type: GameObject.gate) as! GateView)
     }
 }
+
+
+

@@ -11,9 +11,17 @@ import UIKit
 
 class RotatingGateView : GateView
 {
-    init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect, loopDuration : Double) {
-        super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
-        self.rotateInfinite(duration: loopDuration)
+    var timerTracker : Double = 0
+    
+    init(params : RotatingGateParams) {
+        super.init(params: params)
+        //self.rotateInfinite(duration: params.loopDuration)
+        
+        //testing with a timer anim
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
+            self.rotateTo(angle: CGFloat(1.0))
+            self.frameView.rotateTo(angle: CGFloat(1.0))
+        }
     }
     
     required init?(coder: NSCoder) {

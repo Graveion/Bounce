@@ -9,12 +9,17 @@
 import Foundation
 import UIKit
 
-class GateView : GameObjectView
+protocol Collidable: class {
+    func collisionBox() -> CGRect
+    func collision(with: GameObjectView)
+}
+
+class GateView : GameObjectView, Collidable
 {
-    var collisionFrame = CGRect()
+    var frameView = UIView()
     
-    override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
-        super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
+    override init(params: ObjectParams) {
+        super.init(params: params)
     
         //can do this with an imageview or something to make it nicer i guess
         //just doing it easy way for now
@@ -25,13 +30,12 @@ class GateView : GameObjectView
         let rightBox : CGRect = CGRect(x: frame.width - 8,y: frame.height/2 - 4,width: 8,height: 8)
         let rightBoxView = UIView(frame: rightBox)
         rightBoxView.backgroundColor = UIColor.blue
-        
-        collisionFrame = CGRect(x: frame.origin.x,y: frame.origin.y + frame.height/2 - 4,width: frame.width - 8,height: 8)
-        
+            
         addSubview(leftBoxView)
         addSubview(rightBoxView)
                 
         let lightningFrame : CGRect = CGRect(x: 8.0,y: 0.0,width: frame.width - 8,height: frame.height)
+        
         addSubview(LightningView(frame: lightningFrame))
     }
 
@@ -47,11 +51,16 @@ class GateView : GameObjectView
         
     }
     
-    func collisionBox() -> UIBezierPath
+    func collisionBox() -> CGRect
     {
-        let path = UIBezierPath(rect :collisionFrame)
-        path.apply(transform)
-        return path
+        return frame.insetBy(dx: 8, dy: frame.height/2)
+    }
+
+    func collision(with: GameObjectView) {
+        if (with is BoxView)
+        {
+            owner?.remove(self)
+        }
     }
     
     func animate()

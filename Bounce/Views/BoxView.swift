@@ -9,25 +9,23 @@
 import Foundation
 import UIKit
 
-protocol SpawnNewBoxDelegate: class {
-    func spawnNewBox(_ sender: BoxView)
-}
-
-protocol GameOverDelegate: class {
+protocol GameDelegate: class {
+    func spawnNewBox()
     func gameOver()
+    func score(_ score: Int)
 }
 
-class BoxView : GameObjectView
+class BoxView : MovingObjectView, Collidable
 {
     var colourIndex = 0
     var colours = [UIColor]()
     var bounces = 5
-    weak var spawnDelegate: SpawnNewBoxDelegate?
-    weak var gameOverDelegate: GameOverDelegate?
+    weak var game: GameDelegate?
     var armour = 0
+    var hp = 1
     
-    override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
-        super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
+    override init(params: MovingObjectParams) {
+        super.init(params: params)
         
         colours.append(UIColor.red)
         colours.append(UIColor.yellow)
@@ -40,7 +38,6 @@ class BoxView : GameObjectView
         self.layer.backgroundColor = colours[Int.random(in: 0..<colours.count)].cgColor
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 1
-        
     }
     
     required init?(coder: NSCoder) {
@@ -65,7 +62,24 @@ class BoxView : GameObjectView
         
         if (hp == 0)
         {
-            gameOverDelegate?.gameOver()
+            game?.gameOver()
+        }
+    }
+    
+    func collisionBox() -> CGRect
+    {
+        return frame
+    }
+    
+    func collision(with: GameObjectView) {
+        if (with is GateView)
+        {
+            addBuff(buff: Buff(value: 0.4, duration: .long, type: .speed, owner: self))
+            game?.score(100)
+        }
+        else if(with is MineView)
+        {
+            damage()
         }
     }
     

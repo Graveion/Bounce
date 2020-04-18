@@ -9,10 +9,24 @@
 import Foundation
 import UIKit
 
-class MineView : GameObjectView
+class MineView : MovingObjectView, Collidable
 {
-    override init(frame: CGRect, xVelocity : CGFloat, yVelocity : CGFloat, gameBounds: CGRect) {
-        super.init(frame : frame, xVelocity : xVelocity, yVelocity : yVelocity, gameBounds: gameBounds)
+    
+    func collisionBox() -> CGRect
+    {
+        return frame
+    }
+    
+    func collision(with: GameObjectView) {
+        if (with is BoxView)
+        {
+            owner?.remove(self)
+            //then animate an explosion
+        }
+    }
+    
+    override init(params : MovingObjectParams) {
+        super.init(params : params)
         self.backgroundColor = UIColor.black
     }
     
