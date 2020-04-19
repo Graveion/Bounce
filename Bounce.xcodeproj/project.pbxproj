@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		5B1694DE2449F56300DE0AF8 /* MovingObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694DD2449F56300DE0AF8 /* MovingObjectView.swift */; };
 		5B1694E0244A3CEE00DE0AF8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694DF244A3CEE00DE0AF8 /* Player.swift */; };
+		5B1694E3244BAD8200DE0AF8 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694E2244BAD8200DE0AF8 /* Square.swift */; };
+		5B1694E5244BAD8D00DE0AF8 /* Quadtree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694E4244BAD8D00DE0AF8 /* Quadtree.swift */; };
+		5B1694E7244BADA000DE0AF8 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694E6244BADA000DE0AF8 /* Body.swift */; };
+		5B1694E9244BADA900DE0AF8 /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694E8244BADA900DE0AF8 /* MathUtil.swift */; };
+		5B1694EB244BADD100DE0AF8 /* Vector2d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694EA244BADD100DE0AF8 /* Vector2d.swift */; };
+		5B1694ED244BB86A00DE0AF8 /* GravityWellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694EC244BB86A00DE0AF8 /* GravityWellView.swift */; };
+		5B1694EF244BBDDC00DE0AF8 /* GravityObjectParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1694EE244BBDDC00DE0AF8 /* GravityObjectParams.swift */; };
 		5BD02811243214F4002F5B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02810243214F4002F5B36 /* AppDelegate.swift */; };
 		5BD02813243214F4002F5B36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02812243214F4002F5B36 /* SceneDelegate.swift */; };
 		5BD02815243214F4002F5B36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD02814243214F4002F5B36 /* ViewController.swift */; };
@@ -57,6 +64,13 @@
 /* Begin PBXFileReference section */
 		5B1694DD2449F56300DE0AF8 /* MovingObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingObjectView.swift; sourceTree = "<group>"; };
 		5B1694DF244A3CEE00DE0AF8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5B1694E2244BAD8200DE0AF8 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		5B1694E4244BAD8D00DE0AF8 /* Quadtree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quadtree.swift; sourceTree = "<group>"; };
+		5B1694E6244BADA000DE0AF8 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
+		5B1694E8244BADA900DE0AF8 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
+		5B1694EA244BADD100DE0AF8 /* Vector2d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2d.swift; sourceTree = "<group>"; };
+		5B1694EC244BB86A00DE0AF8 /* GravityWellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityWellView.swift; sourceTree = "<group>"; };
+		5B1694EE244BBDDC00DE0AF8 /* GravityObjectParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityObjectParams.swift; sourceTree = "<group>"; };
 		5BD0280D243214F4002F5B36 /* Bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BD02810243214F4002F5B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BD02812243214F4002F5B36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +130,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B1694E1244BAD2600DE0AF8 /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				5B1694E2244BAD8200DE0AF8 /* Square.swift */,
+				5B1694E4244BAD8D00DE0AF8 /* Quadtree.swift */,
+				5B1694E6244BADA000DE0AF8 /* Body.swift */,
+				5B1694E8244BADA900DE0AF8 /* MathUtil.swift */,
+				5B1694EA244BADD100DE0AF8 /* Vector2d.swift */,
+			);
+			path = Gravity;
+			sourceTree = "<group>";
+		};
 		5BD02804243214F4002F5B36 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +165,7 @@
 		5BD0280F243214F4002F5B36 /* Bounce */ = {
 			isa = PBXGroup;
 			children = (
+				5B1694E1244BAD2600DE0AF8 /* Gravity */,
 				5BD0285D243A4D9D002F5B36 /* Classes */,
 				5BD02858243A4BFD002F5B36 /* Data */,
 				5BD02855243A3A16002F5B36 /* Utility */,
@@ -187,6 +214,7 @@
 				5BD02853243A301C002F5B36 /* GameObjectView.swift */,
 				5BD02862243A6133002F5B36 /* RotatingGateView.swift */,
 				5B1694DD2449F56300DE0AF8 /* MovingObjectView.swift */,
+				5B1694EC244BB86A00DE0AF8 /* GravityWellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +252,7 @@
 				5BD02866243A7804002F5B36 /* ParameterData.swift */,
 				5BD0286A243D12B3002F5B36 /* Buff.swift */,
 				5B1694DF244A3CEE00DE0AF8 /* Player.swift */,
+				5B1694EE244BBDDC00DE0AF8 /* GravityObjectParams.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -364,16 +393,22 @@
 				5BD02861243A5755002F5B36 /* RotatingGateParams.swift in Sources */,
 				5BD0285F243A4DB9002F5B36 /* ObjectParams.swift in Sources */,
 				5BD02865243A622B002F5B36 /* MovingObjectParams.swift in Sources */,
+				5B1694E7244BADA000DE0AF8 /* Body.swift in Sources */,
 				5B1694DE2449F56300DE0AF8 /* MovingObjectView.swift in Sources */,
+				5B1694E3244BAD8200DE0AF8 /* Square.swift in Sources */,
 				5B1694E0244A3CEE00DE0AF8 /* Player.swift in Sources */,
 				5BD02849243215C8002F5B36 /* GateView.swift in Sources */,
 				5BD02815243214F4002F5B36 /* ViewController.swift in Sources */,
 				5BD02848243215C8002F5B36 /* LightningView.swift in Sources */,
+				5B1694ED244BB86A00DE0AF8 /* GravityWellView.swift in Sources */,
 				5BD02863243A6133002F5B36 /* RotatingGateView.swift in Sources */,
 				5BD02854243A301C002F5B36 /* GameObjectView.swift in Sources */,
+				5B1694EF244BBDDC00DE0AF8 /* GravityObjectParams.swift in Sources */,
+				5B1694E9244BADA900DE0AF8 /* MathUtil.swift in Sources */,
 				5BD02811243214F4002F5B36 /* AppDelegate.swift in Sources */,
 				5BD02867243A7804002F5B36 /* ParameterData.swift in Sources */,
 				5BD02847243215C8002F5B36 /* BoxView.swift in Sources */,
+				5B1694E5244BAD8D00DE0AF8 /* Quadtree.swift in Sources */,
 				5BD02813243214F4002F5B36 /* SceneDelegate.swift in Sources */,
 				5BD02857243A3A2A002F5B36 /* SpawnManager.swift in Sources */,
 				5BD0284D2438BDFF002F5B36 /* ControlAreaView.swift in Sources */,
@@ -381,6 +416,7 @@
 				5BD0286B243D12B3002F5B36 /* Buff.swift in Sources */,
 				5BD02852243A114D002F5B36 /* ViewFactory.swift in Sources */,
 				5BD0284B2438BDC2002F5B36 /* ScoreboardView.swift in Sources */,
+				5B1694EB244BADD100DE0AF8 /* Vector2d.swift in Sources */,
 				5BD0281B243214F4002F5B36 /* Bounce.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

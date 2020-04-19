@@ -24,19 +24,21 @@ class ParameterData: Decodable {
             
             switch type {
             case .box:
-                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
             case .gate:
                 forType[type.rawValue] = try values.decode(ObjectParams.self, forKey: type)
             case .rotatingGate:
                 forType[type.rawValue] = try values.decode(RotatingGateParams.self, forKey: type)
             case .mine:
-                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
             case .mobileMine:
-                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
             case .verticalMine:
-                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
             case .horizontalMine:
-                forType[type.rawValue] = try values.decode(MovingObjectParams.self, forKey: type)
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
+            case .gravityWell:
+                forType[type.rawValue] = try values.decode(GravityObjectParams.self, forKey: type)
             }
         }
     }

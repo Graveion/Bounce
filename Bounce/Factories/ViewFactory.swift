@@ -17,20 +17,22 @@ class ViewFactory
     func spawnObject(type : GameObject, params : ObjectParams) -> GameObjectView?
     {
         switch (params, type) {
-        case (let params as MovingObjectParams, .box):
+        case (let params as GravityObjectParams, .box):
             return BoxView(params: params)
         case (let params as ObjectParams, .gate):
             return GateView(params: params)
         case (let params as RotatingGateParams, .rotatingGate):
             return RotatingGateView(params : params)
-        case (let params as MovingObjectParams, .mine):
+        case (let params as GravityObjectParams, .mine):
             return MineView(params : params)
-        case (let params as MovingObjectParams, .mobileMine):
+        case (let params as GravityObjectParams, .mobileMine):
             return MineView(params : params)
-        case (let params as MovingObjectParams, .verticalMine):
+        case (let params as GravityObjectParams, .verticalMine):
             return MineView(params : params)
-        case (let params as MovingObjectParams, .horizontalMine):
+        case (let params as GravityObjectParams, .horizontalMine):
             return MineView(params : params)
+        case (let params as GravityObjectParams, .gravityWell):
+            return GravityWellView(params : params)
             
         default: return nil
         }
@@ -45,5 +47,6 @@ enum GameObject: String, CaseIterable, CodingKey {
     case mobileMine = "mobileMine"
     case verticalMine = "verticalMine"
     case horizontalMine = "horizontalMine"
+    case gravityWell = "gravityWell"
 }
 

@@ -15,16 +15,19 @@ protocol GameDelegate: class {
     func score(_ score: Int)
 }
 
-class BoxView : MovingObjectView, Collidable
+class BoxView : MovingObjectView, Collidable, Gravity
 {
+    var mass : Double = 0
+    var body = Body (0.0, Vector2d(0,0))
+    
     var colourIndex = 0
     var colours = [UIColor]()
     var bounces = 5
     weak var game: GameDelegate?
     var armour = 0
-    var hp = 1
+    var hp = 99
     
-    override init(params: MovingObjectParams) {
+    init(params: GravityObjectParams) {
         super.init(params: params)
         
         colours.append(UIColor.red)
@@ -34,6 +37,8 @@ class BoxView : MovingObjectView, Collidable
         colours.append(UIColor.orange)
         colours.append(UIColor.purple)
         
+        self.mass = params.mass
+        self.body = Body(mass, Vector2d(Double(frame.origin.x), Double(frame.origin.y)))
         
         self.layer.backgroundColor = colours[Int.random(in: 0..<colours.count)].cgColor
         self.layer.borderColor = UIColor.black.cgColor
@@ -69,6 +74,20 @@ class BoxView : MovingObjectView, Collidable
     func collisionBox() -> CGRect
     {
         return frame
+    }
+    
+    func addImpulse() {
+        xVelocity += CGFloat(body.acceleration.x)
+        yVelocity += CGFloat(body.acceleration.y)
+    }
+    
+    override func update() {
+        super.update()
+        
+        //need to update body each frame and reset acceleration
+        body.mass = mass
+        body.acceleration = Vector2d(0.0,0.0)
+        body.location = Vector2d(Double(frame.origin.x), Double(frame.origin.y))
     }
     
     func collision(with: GameObjectView) {

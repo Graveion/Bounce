@@ -1,52 +1,39 @@
 //
-//  ScoreboardView.swift
+//  GravityWellView.swift
 //  Bounce
 //
-//  Created by Tim Green on 04/04/2020.
+//  Created by Tim Green on 18/04/2020.
 //  Copyright © 2020 Tim Green. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class MineView : MovingObjectView, Collidable, Gravity
+protocol Gravity: class {
+    var body : Body {get set}
+    var mass : Double {get set}
+    func addImpulse()
+}
+
+class GravityWellView : MovingObjectView, Collidable, Gravity
 {
-    
     var mass : Double = 0
     var body = Body (0.0, Vector2d(0,0))
     
     func collisionBox() -> CGRect
     {
-        return frame
+        //only needs a small collision box
+        //we don't want things orbiting closely to be destroyed
+        return frame.insetBy(dx: frame.width/2 - 2, dy: frame.height/2 - 2)
     }
     
     func collision(with: GameObjectView) {
-        if (with is BoxView)
+        if (with is MineView)
         {
-            //could animate an explosion on this view
-            //then remove on animation complete callback
-            owner?.remove(self)
+            let gravity = with as! Gravity
+            //the mine will be removed and we grow in size
+            mass += gravity.mass
         }
-        
-        if (with is GravityWellView)
-        {
-            //the well absorbs it
-            shrinkAnim()
-        }
-    }
-    
-    func shrinkAnim()
-    {
-        //removes but doesn't animate
-        //completion just activates instantly
-        UIView.animate(withDuration: 6.0,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-            self.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)},
-            completion: { _ in
-                self.owner?.remove(self)
-        })
     }
     
     func addImpulse() {
@@ -65,9 +52,9 @@ class MineView : MovingObjectView, Collidable, Gravity
     
     init(params : GravityObjectParams) {
         super.init(params : params)
-       
-        self.backgroundColor = UIColor.black
+        
         self.mass = params.mass
+        self.backgroundColor = UIColor.purple
         self.body = Body(mass, Vector2d(Double(frame.origin.x), Double(frame.origin.y)))
     }
     
