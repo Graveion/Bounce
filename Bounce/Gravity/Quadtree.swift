@@ -8,18 +8,18 @@
 
 import Foundation
 
-class BHTree {
+class Quadtree {
 
     // body or aggregate body stored in this node
-    var body = Body(0.0, Vector2d(0.0, 0.0), Vector2d(0.0, 0.0))
+    var body = Body(0.0, Vector2d(0.0, 0.0))
     var NW // tree representing northwest quadrant
-            : BHTree? = nil
+            : Quadtree? = nil
     var NE // tree representing northeast quadrant
-            : BHTree? = nil
+            : Quadtree? = nil
     var SW // tree representing southwest quadrant
-            : BHTree? = nil
+            : Quadtree? = nil
     var SE // tree representing southeast quadrant
-            : BHTree? = nil
+            : Quadtree? = nil
 
     var aggregateMass = 0.0
     var aggregateLocation = Vector2d(0.0, 0.0)
@@ -56,7 +56,7 @@ class BHTree {
 
             insert(body)
 
-            body = Body(0.0, Vector2d(0.0, 0.0), Vector2d(0.0, 0.0))
+            body = Body(0.0, Vector2d(0.0, 0.0))
             body.state = State.Empty
         }
     }
@@ -66,22 +66,22 @@ class BHTree {
         //or create a new child node
         if (square.squareNW().contains(B.location.x, B.location.y)) {
             if (NW == nil) {
-                NW = BHTree(square.squareNW())
+                NW = Quadtree(square.squareNW())
             }
             NW!.insert(B)
         } else if (square.squareNE().contains(B.location.x, B.location.y)) {
             if (NE == nil) {
-                NE = BHTree(square.squareNE())
+                NE = Quadtree(square.squareNE())
             }
             NE!.insert(B)
         } else if (square.squareSW().contains(B.location.x, B.location.y)) {
             if (SW == nil) {
-                SW = BHTree(square.squareSW())
+                SW = Quadtree(square.squareSW())
             }
             SW!.insert(B)
         } else if (square.squareSE().contains(B.location.x, B.location.y)) {
             if (SE == nil) {
-                SE = BHTree(square.squareSE())
+                SE = Quadtree(square.squareSE())
             }
             SE!.insert(B)
         }
@@ -112,7 +112,7 @@ class BHTree {
 
             if (((square.subdiv * 2) / d) < theta) {
                 //s/d < theta so we aggregate this nodes data and calculate the acceleration vector..
-                let nodeCentre = Body(aggregateMass, aggregateLocation, Vector2d(0.0, 0.0))
+                let nodeCentre = Body(aggregateMass, aggregateLocation)
                 CalcDistance(a, nodeCentre)
             } else {
                 //recursively call for children
@@ -133,7 +133,7 @@ class BHTree {
         let x = particles.map { $0.location.x * $0.mass }.reduce(0,+) / m
         let y = particles.map { $0.location.y * $0.mass }.reduce(0,+) / m
 
-        return Body(m, Vector2d(x, y), Vector2d(0.0, 0.0))
+        return Body(m, Vector2d(x, y))
     }
 
 
@@ -157,17 +157,17 @@ class BHTree {
 
         //needs to be the aggregate data of the nodes.
         if (NW?.aggregateMass != 0.0 && NW?.aggregateLocation != nil) {
-            activeNodes.append(Body(NW!.aggregateMass, NW!.aggregateLocation, Vector2d(0.0, 0.0)))
+            activeNodes.append(Body(NW!.aggregateMass, NW!.aggregateLocation))
         }
 
         if (NE?.aggregateMass != 0.0 && NE?.aggregateLocation != nil) {
-            activeNodes.append(Body(NE!.aggregateMass, NE!.aggregateLocation, Vector2d(0.0, 0.0)))
+            activeNodes.append(Body(NE!.aggregateMass, NE!.aggregateLocation))
         }
         if (SE?.aggregateMass != 0.0 && SE?.aggregateLocation != nil) {
-            activeNodes.append(Body(SE!.aggregateMass, SE!.aggregateLocation, Vector2d(0.0, 0.0)))
+            activeNodes.append(Body(SE!.aggregateMass, SE!.aggregateLocation))
         }
         if (SW?.aggregateMass != 0.0 && SW?.aggregateLocation != nil) {
-            activeNodes.append(Body(SW!.aggregateMass, SW!.aggregateLocation, Vector2d(0.0, 0.0)))
+            activeNodes.append(Body(SW!.aggregateMass, SW!.aggregateLocation))
         }
 
         let centre = CentreOfMass(activeNodes)

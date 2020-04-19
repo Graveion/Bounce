@@ -22,6 +22,10 @@ class ViewController: UIViewController, GameDelegate, ObjectHandlerDelegate {
     var spawnManager = SpawnManager()
     var players = [BoxView]()
     
+    //we'll move this into its own manager probably
+    //annoying having to default everything
+    var quadTree = Quadtree(Square(0,0,0))
+    
   override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,14 +73,30 @@ class ViewController: UIViewController, GameDelegate, ObjectHandlerDelegate {
     func initialiseGame()
     {
         spawnManager.gameObjects.removeAll()
+                
+        //should give the smallest covering square
+        quadTree = generateQuadtree()
         
-        let player = spawnManager.spawnPlayer()
+        let player = spawnManager.spawnPlayer(gameDelegate: self)
         players.append(player)
         self.view.addSubview(player)
+        
+        //remove this
+        addObject(spawnManager.spawnObject(type: GameObject.gravityWell) as! GravityWellView)
     
         timer = Timer.scheduledTimer(withTimeInterval: 0.0133, repeats: true) { _ in
             self.gameLoop()
         }        
+    }
+    
+    func generateQuadtree() -> Quadtree
+    {
+        let length = max(Global.gameBounds.width, Global.gameBounds.height)
+        return Quadtree(Square(
+            Double(Global.gameBounds.minX - (length - Global.gameBounds.width/2)),
+            Double(Global.gameBounds.minY - (length - Global.gameBounds.height/2)),
+            Double(length * 2))
+        )
     }
     
     func removeObject(_ sender: GameObjectView) {
@@ -128,6 +148,23 @@ class ViewController: UIViewController, GameDelegate, ObjectHandlerDelegate {
     
     func gameLoop()
     {
+        //have to regen tree every loop
+        //so we can reinsert nodes
+        quadTree = generateQuadtree()
+        
+        //get all objects we want to follow gravity rules
+        //need to do this before position is updated
+        let gravityObjects = spawnManager.gameObjects.compactMap({ $0 as? Gravity })
+        
+        //insert them into the tree
+        gravityObjects.forEach{quadTree.insert($0.body)}
+        
+        //have to wait til all nodes inserted before we can calc
+        gravityObjects.forEach{
+            quadTree.findForce($0.body)
+            $0.addImpulse()
+        }
+    
         //position
         spawnManager.gameObjects.forEach{obj in  obj.update() }
         
@@ -152,6 +189,12 @@ class ViewController: UIViewController, GameDelegate, ObjectHandlerDelegate {
                 }
             }
         }
+        
+        
+        
+        //######TODO
+        //make box/mine grav params
+        //mess with mass/distance etc enough that we get sensible gravity
     }
     
     

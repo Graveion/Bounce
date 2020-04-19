@@ -42,8 +42,6 @@ class SpawnManager : RemoveFromOwnerDelegate
         let spawnTimer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { _ in
             var spawn : GameObjectView
             
-            if (self.gameObjects.count == 2) {return}
-
             let selector = Int.random(in: 0...5)
 
             switch selector {
@@ -75,9 +73,11 @@ class SpawnManager : RemoveFromOwnerDelegate
         return newObj
     }
     
-    func spawnPlayer() -> BoxView
+    func spawnPlayer(gameDelegate : GameDelegate) -> BoxView
     {
-        return (spawnObject(type: GameObject.box) as! BoxView)
+        let player = spawnObject(type: GameObject.box) as! BoxView
+        player.game = gameDelegate
+        return player
     }
     
     func spawnGate()

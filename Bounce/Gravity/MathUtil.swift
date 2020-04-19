@@ -42,7 +42,7 @@ func CalcDistance(_ A: Body,_ B: Body) {
     var distance: Double = pointDistance(A.location, B.location)
     //we check for distance greater than 0 here because newton's formula tends to infinity at zero
     //so as to reduce the number of objects that fly off due to huge increased acceleration
-    if (distance > 1) {
+    if (distance > 0.5) {
         //scale out co-ordinate distance - this can be tweaked to alter the feel
         distance /= 50000000
         let force: Double = G * ((A.mass * B.mass) / distance)

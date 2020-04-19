@@ -43,7 +43,6 @@ class Square {
     }
 
     func squareSE() -> Square {
-
         return Square(left+subdiv, top+subdiv, subdiv)
     }
 

@@ -14,12 +14,10 @@ class Body {
     var state = State.Empty
     var mass : Double
     var location : Vector2d
-    var velocity : Vector2d
 
-    init(_ mass: Double,_ location: Vector2d,_ velocity: Vector2d) {
+    init(_ mass: Double,_ location: Vector2d) {
         self.mass = mass
         self.location = location
-        self.velocity = velocity
     }
 }
 

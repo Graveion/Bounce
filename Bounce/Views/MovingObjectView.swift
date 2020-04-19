@@ -37,12 +37,29 @@ class MovingObjectView : GameObjectView, RemoveFromOwnerDelegate
     
     override func update()
     {
-        if ((x + self.frame.width) > Global.gameBounds.maxX - xVelocity || x < Global.gameBounds.minX)
+        //reset position if going out of bounds
+        
+        if(x + self.frame.width + xVelocity > Global.gameBounds.maxX)
         {
+            x = Global.gameBounds.maxX - self.frame.width
             xVelocity *= -1
         }
-        if ((y + self.frame.width) > Global.gameBounds.maxY - yVelocity || y < Global.gameBounds.minY)
+        
+        if(x + xVelocity < Global.gameBounds.minX)
         {
+            x = Global.gameBounds.minX
+            xVelocity *= -1
+        }
+        
+        if(y + self.frame.width + yVelocity > Global.gameBounds.maxY)
+        {
+            y = Global.gameBounds.maxY - self.frame.width
+            yVelocity *= -1
+        }
+        
+        if(y + yVelocity < Global.gameBounds.minY)
+        {
+            y = Global.gameBounds.minY
             yVelocity *= -1
         }
         

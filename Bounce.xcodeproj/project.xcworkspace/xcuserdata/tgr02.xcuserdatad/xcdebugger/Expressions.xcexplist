@@ -73,6 +73,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "BoxView.collision(with:):BoxView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Quadtree.insert(_:):Quadtree.swift">
          <PersistentStrings>
             <PersistentString
@@ -98,6 +106,14 @@
             </PersistentString>
             <PersistentString
                value = "body.state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.generateQuadtree():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Square(&#10;            Double(Global.gameBounds.minX - (length/2 - Global.gameBounds.width/2)),&#10;            Double(Global.gameBounds.minY - (length/2 - Global.gameBounds.height/2)),&#10;            Double(length))">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -154,7 +170,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GravityWellView.collisionBox():GravityWellView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "frame.insetBy(dx: frame.width - 2, dy: frame.height - 2)">
+            </PersistentString>
+            <PersistentString
+               value = "frame.insetBy(dx: 5,dy: 5)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.gameLoop():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "quadTree">
+            </PersistentString>
+            <PersistentString
+               value = "Global.gameBounds">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MovingObjectParams.init(from:):MovingObjectParams.swift">

@@ -3,7 +3,8 @@
         "width" : 12,
         "height" : 12,
         "xVelocity": 1.4,
-        "yVelocity": 1.4
+        "yVelocity": 1.4,
+        "mass": 1.0
     },
     "gate" : {
         "width" : 100,
@@ -18,25 +19,35 @@
         "width" : 16,
         "height" : 16,
         "xVelocity": 0.0,
-        "yVelocity": 0.0
-
+        "yVelocity": 0.0,
+        "mass": 1.0
     },
     "mobileMine" : {
         "width" : 16,
         "height" : 16,
         "xVelocity": 0.4,
-        "yVelocity": 0.4
+        "yVelocity": 0.4,
+        "mass": 1.0
     },
     "verticalMine" : {
         "width" : 16,
         "height" : 16,
         "xVelocity": 0.0,
-        "yVelocity": 0.4
+        "yVelocity": 0.4,
+        "mass": 1.0
     },
     "horizontalMine" : {
         "width" : 16,
         "height" : 16,
         "xVelocity": 0.4,
-        "yVelocity": 0.0
+        "yVelocity": 0.0,
+        "mass": 1.0
+    },
+    "gravityWell" : {
+        "width" : 16,
+        "height" : 16,
+        "xVelocity": 0.4,
+        "yVelocity": 0.4,
+        "mass" : 100.0
     }
 }
