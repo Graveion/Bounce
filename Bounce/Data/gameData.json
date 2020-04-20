@@ -48,6 +48,6 @@
         "height" : 16,
         "xVelocity": 0.4,
         "yVelocity": 0.4,
-        "mass" : 100.0
+        "mass" : 110.0
     }
 }
